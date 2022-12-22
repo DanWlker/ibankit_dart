@@ -1,4 +1,3 @@
-//TODO: check this
 import 'package:ibankit_dart/country.dart';
 import 'package:ibankit_dart/structure_part.dart';
 
