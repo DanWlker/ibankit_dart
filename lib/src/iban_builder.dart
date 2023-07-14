@@ -7,7 +7,7 @@ import 'rand_int.dart';
 import 'structure_part.dart';
 
 class IBANBuilder {
-  Country? _countryValue;
+  CountryCode? _countryValue;
   String? _bankCodeValue;
   String? _branchCodeValue;
   String? _nationalCheckDigitValue;
@@ -17,7 +17,7 @@ class IBANBuilder {
   String? _identificationNumberValue;
   String? _branchCheckDigitValue;
 
-  IBANBuilder country(Country country) {
+  IBANBuilder countryCode(CountryCode country) {
     _countryValue = country;
     return this;
   }
@@ -64,7 +64,7 @@ class IBANBuilder {
 
   IBAN build([bool fillRandom = true, bool validate = true]) {
     if (fillRandom && _countryValue == null) {
-      final List<Country> supportedCountries =
+      final List<CountryCode> supportedCountries =
           BbanStructure.supportedCountries();
 
       _countryValue = supportedCountries[randInt(supportedCountries.length)];

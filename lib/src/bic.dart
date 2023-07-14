@@ -16,8 +16,8 @@ class BIC {
   }
 
   /// Country representation of Bic's country code.
-  Country? getCountry() {
-    return Country.countryByCode(bic_util.getCountryCode(_value));
+  CountryCode? getCountry() {
+    return CountryCode.countryByCode(bic_util.getCountryCode(_value));
   }
 
   /// string representation of Bic's location code.

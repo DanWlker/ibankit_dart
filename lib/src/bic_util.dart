@@ -91,7 +91,7 @@ void validateCountryCode(String bic) {
     );
   }
 
-  if (Country.countryByCode(countryCode) == null) {
+  if (CountryCode.countryByCode(countryCode) == null) {
     throw UnsupportedCountryException(
       "Country code is not supported. Code:$countryCode",
     );

@@ -214,19 +214,19 @@ class BbanStructure {
     BbanStructurePart.nationalCheckDigit(2, CharacterType.n, nationalFR),
   ]);
 
-  static Map<Country, BbanStructure> structures = {
-    Country.AD: BbanStructure([
+  static Map<CountryCode, BbanStructure> structures = {
+    CountryCode.AD: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.branchCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(12, CharacterType.c),
     ]),
 
-    Country.AE: BbanStructure([
+    CountryCode.AE: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(16, CharacterType.c),
     ]),
 
-    Country.AL: BbanStructure([
+    CountryCode.AL: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.branchCode(4, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(1, CharacterType.n),
@@ -234,27 +234,27 @@ class BbanStructure {
     ]),
 
     // Provisional
-    Country.AO:
+    CountryCode.AO:
         BbanStructure([BbanStructurePart.accountNumber(21, CharacterType.n)]),
 
-    Country.AT: BbanStructure([
+    CountryCode.AT: BbanStructure([
       BbanStructurePart.bankCode(5, CharacterType.n),
       BbanStructurePart.accountNumber(11, CharacterType.n),
     ]),
 
-    Country.AZ: BbanStructure([
+    CountryCode.AZ: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.accountNumber(20, CharacterType.c),
     ]),
 
-    Country.BA: BbanStructure([
+    CountryCode.BA: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.branchCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(8, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(2, CharacterType.n),
     ]),
 
-    Country.BE: BbanStructure([
+    CountryCode.BE: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(7, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(2, CharacterType.n,
@@ -285,34 +285,34 @@ class BbanStructure {
     ]),
 
     // Provisional
-    Country.BF:
+    CountryCode.BF:
         BbanStructure([BbanStructurePart.accountNumber(23, CharacterType.n)]),
 
-    Country.BG: BbanStructure([
+    CountryCode.BG: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.branchCode(4, CharacterType.n),
       BbanStructurePart.accountType(2, CharacterType.n),
       BbanStructurePart.accountNumber(8, CharacterType.c),
     ]),
 
-    Country.BH: BbanStructure([
+    CountryCode.BH: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.accountNumber(14, CharacterType.c),
     ]),
 
     // Provisional
-    Country.BI:
+    CountryCode.BI:
         BbanStructure([BbanStructurePart.accountNumber(12, CharacterType.n)]),
 
     // Provisional
-    Country.BJ: BbanStructure([
+    CountryCode.BJ: BbanStructure([
       BbanStructurePart.bankCode(5, CharacterType.c),
       BbanStructurePart.branchCode(5, CharacterType.n),
       BbanStructurePart.accountNumber(12, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(2, CharacterType.n, nationalFR),
     ]),
 
-    Country.BR: BbanStructure([
+    CountryCode.BR: BbanStructure([
       BbanStructurePart.bankCode(8, CharacterType.n),
       BbanStructurePart.branchCode(5, CharacterType.n),
       BbanStructurePart.accountNumber(10, CharacterType.n),
@@ -328,49 +328,49 @@ class BbanStructure {
     //      accounting in the National Bank. Corresponds to the directory of
     //      balance sheet accounts of RB banks (SI002) and the directory of
     //      balance sheet accounts of the National Bank (SI001)
-    Country.BY: BbanStructure([
+    CountryCode.BY: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.c),
       BbanStructurePart.accountType(4, CharacterType.n),
       BbanStructurePart.accountNumber(16, CharacterType.c),
     ]),
 
     // Provisional
-    Country.CF: BbanStructure([
+    CountryCode.CF: BbanStructure([
       BbanStructurePart.accountNumber(23, CharacterType.n),
       // @TODO is this france?
     ]),
 
     // Provisional
-    Country.CG: BbanStructure([
+    CountryCode.CG: BbanStructure([
       BbanStructurePart.accountNumber(23, CharacterType.n),
       // @TODO is this france?
     ]),
 
-    Country.CH: BbanStructure([
+    CountryCode.CH: BbanStructure([
       BbanStructurePart.bankCode(5, CharacterType.n),
       BbanStructurePart.accountNumber(12, CharacterType.c),
     ]),
 
     // Provisional
-    Country.CI: BbanStructure([
+    CountryCode.CI: BbanStructure([
       BbanStructurePart.bankCode(2, CharacterType.c),
       BbanStructurePart.accountNumber(22, CharacterType.n),
     ]),
 
     // Provisional
-    Country.CM:
+    CountryCode.CM:
         BbanStructure([BbanStructurePart.accountNumber(23, CharacterType.n)]),
 
-    Country.CR: BbanStructure([
+    CountryCode.CR: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(14, CharacterType.n),
     ]),
 
     // Provisional
-    Country.CV:
+    CountryCode.CV:
         BbanStructure([BbanStructurePart.accountNumber(21, CharacterType.n)]),
 
-    Country.CY: BbanStructure([
+    CountryCode.CY: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.branchCode(5, CharacterType.n),
       BbanStructurePart.accountNumber(16, CharacterType.c),
@@ -379,19 +379,19 @@ class BbanStructure {
     // Registry defines this as 4!n6!n10!n -- but does not discuss branch information
     // This is improved with info from
     //    https://www.cnb.cz/en/payments/iban/iban-international-bank-account-number-basic-information/
-    Country.CZ: BbanStructure([
+    CountryCode.CZ: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.branchCode(6, CharacterType.n),
       BbanStructurePart.accountNumber(10, CharacterType.n),
     ]),
 
-    Country.DE: BbanStructure([
+    CountryCode.DE: BbanStructure([
       BbanStructurePart.bankCode(8, CharacterType.n),
       BbanStructurePart.accountNumber(10, CharacterType.n),
     ]),
 
     // Provisional
-    Country.DJ: _bbanFR,
+    CountryCode.DJ: _bbanFR,
 
     // Registry defines 4!n9!n1!n -- however no information on
     // nationalCheckDigit exist and all documentation discusses
@@ -399,35 +399,35 @@ class BbanStructure {
     //
     //  This mentions checksum
     //    https://www.finanssiala.fi/maksujenvalitys/dokumentit/IBAN_in_payments.pdf
-    Country.DK: BbanStructure([
+    CountryCode.DK: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(10, CharacterType.n),
     ]),
 
-    Country.DO: BbanStructure([
+    CountryCode.DO: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.c),
       BbanStructurePart.accountNumber(20, CharacterType.n),
     ]),
 
     // Provisional
-    Country.DZ:
+    CountryCode.DZ:
         BbanStructure([BbanStructurePart.accountNumber(20, CharacterType.n)]),
 
-    Country.EE: BbanStructure([
+    CountryCode.EE: BbanStructure([
       BbanStructurePart.bankCode(2, CharacterType.n),
       BbanStructurePart.branchCode(2, CharacterType.n),
       BbanStructurePart.accountNumber(11, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(1, CharacterType.n),
     ]),
 
-    Country.EG: BbanStructure([
+    CountryCode.EG: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.branchCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(17, CharacterType.n),
     ]),
 
     // Spain is 4!n4!n1!n1!n10!n -- but the check digit is 2 digits?
-    Country.ES: BbanStructure([
+    CountryCode.ES: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.branchCode(4, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(2, CharacterType.n, nationalES),
@@ -436,12 +436,12 @@ class BbanStructure {
 
     // Additional details:
     //  https://www.finanssiala.fi/maksujenvalitys/dokumentit/IBAN_in_payments.pdf
-    Country.FI: BbanStructure([
+    CountryCode.FI: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(11, CharacterType.n),
     ]),
 
-    Country.FO: BbanStructure([
+    CountryCode.FO: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(9, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(1, CharacterType.n),
@@ -449,58 +449,58 @@ class BbanStructure {
 
     // FR IBAN covers:
     //  GF, GP, MQ, RE, PF, TF, YT, NC, BL, MF, PM, WF
-    Country.FR: _bbanFR,
+    CountryCode.FR: _bbanFR,
 
     // Provisional
-    Country.GA: _bbanFR,
+    CountryCode.GA: _bbanFR,
 
     // GB IBAN covers:
     //   IM, JE, GG
-    Country.GB: BbanStructure([
+    CountryCode.GB: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.branchCode(6, CharacterType.n),
       BbanStructurePart.accountNumber(8, CharacterType.n),
     ]),
 
-    Country.GE: BbanStructure([
+    CountryCode.GE: BbanStructure([
       BbanStructurePart.bankCode(2, CharacterType.a),
       BbanStructurePart.accountNumber(16, CharacterType.n),
     ]),
 
-    Country.GI: BbanStructure([
+    CountryCode.GI: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.accountNumber(15, CharacterType.c),
     ]),
 
     // Same as DK (same issues)
-    Country.GL: BbanStructure([
+    CountryCode.GL: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(10, CharacterType.n),
     ]),
 
     // Provisional
-    Country.GQ: _bbanFR,
+    CountryCode.GQ: _bbanFR,
 
-    Country.GR: BbanStructure([
+    CountryCode.GR: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.branchCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(16, CharacterType.c),
     ]),
 
-    Country.GT: BbanStructure([
+    CountryCode.GT: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.c),
       BbanStructurePart.currencyType(2, CharacterType.n),
       BbanStructurePart.accountType(2, CharacterType.n),
       BbanStructurePart.accountNumber(16, CharacterType.c),
     ]),
 
-    Country.HR: BbanStructure([
+    CountryCode.HR: BbanStructure([
       BbanStructurePart.bankCode(7, CharacterType.n),
       BbanStructurePart.accountNumber(10, CharacterType.n),
     ]),
 
     // Provisional
-    Country.HN: BbanStructure([
+    CountryCode.HN: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.accountNumber(20, CharacterType.n),
     ]),
@@ -508,7 +508,7 @@ class BbanStructure {
     // Spec says account number is 1!n15!n
     // no information on 1!n exists -- most likely a bank/branch check digit
     //  https://stackoverflow.com/questions/40282199/hungarian-bban-validation
-    Country.HU: BbanStructure([
+    CountryCode.HU: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.branchCode(4, CharacterType.n),
       BbanStructurePart.branchCheckDigit(1, CharacterType.n),
@@ -516,117 +516,117 @@ class BbanStructure {
       BbanStructurePart.nationalCheckDigit(1, CharacterType.n),
     ]),
 
-    Country.IE: BbanStructure([
+    CountryCode.IE: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.branchCode(6, CharacterType.n),
       BbanStructurePart.accountNumber(8, CharacterType.n),
     ]),
 
-    Country.IL: BbanStructure([
+    CountryCode.IL: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.branchCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(13, CharacterType.n),
     ]),
 
-    Country.IQ: BbanStructure([
+    CountryCode.IQ: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.branchCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(12, CharacterType.n),
     ]),
 
     // Provisional
-    Country.IR: BbanStructure([
+    CountryCode.IR: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(19, CharacterType.n),
     ]),
 
-    Country.IS: BbanStructure([
+    CountryCode.IS: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.branchCode(2, CharacterType.n),
       BbanStructurePart.accountNumber(6, CharacterType.n),
       BbanStructurePart.identificationNumber(10, CharacterType.n),
     ]),
 
-    Country.IT: BbanStructure([
+    CountryCode.IT: BbanStructure([
       BbanStructurePart.nationalCheckDigit(1, CharacterType.a, nationalIT),
       BbanStructurePart.bankCode(5, CharacterType.n),
       BbanStructurePart.branchCode(5, CharacterType.n),
       BbanStructurePart.accountNumber(12, CharacterType.c),
     ]),
 
-    Country.JO: BbanStructure([
+    CountryCode.JO: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.branchCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(18, CharacterType.c),
     ]),
 
     // Provisional
-    Country.KM:
+    CountryCode.KM:
         BbanStructure([BbanStructurePart.accountNumber(23, CharacterType.n)]),
 
-    Country.KW: BbanStructure([
+    CountryCode.KW: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.accountNumber(22, CharacterType.c),
     ]),
 
-    Country.KZ: BbanStructure([
+    CountryCode.KZ: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(13, CharacterType.c),
     ]),
 
-    Country.LB: BbanStructure([
+    CountryCode.LB: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(20, CharacterType.c),
     ]),
 
-    Country.LC: BbanStructure([
+    CountryCode.LC: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.accountNumber(24, CharacterType.n),
     ]),
 
-    Country.LI: BbanStructure([
+    CountryCode.LI: BbanStructure([
       BbanStructurePart.bankCode(5, CharacterType.n),
       BbanStructurePart.accountNumber(12, CharacterType.c),
     ]),
 
-    Country.LT: BbanStructure([
+    CountryCode.LT: BbanStructure([
       BbanStructurePart.bankCode(5, CharacterType.n),
       BbanStructurePart.accountNumber(11, CharacterType.n),
     ]),
 
-    Country.LU: BbanStructure([
+    CountryCode.LU: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(13, CharacterType.c),
     ]),
 
-    Country.LV: BbanStructure([
+    CountryCode.LV: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.accountNumber(13, CharacterType.c),
     ]),
 
-    Country.LY: BbanStructure([
+    CountryCode.LY: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.branchCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(15, CharacterType.n),
     ]),
 
     // Provisional
-    Country.MA:
+    CountryCode.MA:
         BbanStructure([BbanStructurePart.accountNumber(24, CharacterType.n)]),
 
-    Country.MC: BbanStructure([
+    CountryCode.MC: BbanStructure([
       BbanStructurePart.bankCode(5, CharacterType.n),
       BbanStructurePart.branchCode(5, CharacterType.n),
       BbanStructurePart.accountNumber(11, CharacterType.c),
       BbanStructurePart.nationalCheckDigit(2, CharacterType.n, nationalFR),
     ]),
 
-    Country.MD: BbanStructure([
+    CountryCode.MD: BbanStructure([
       BbanStructurePart.bankCode(2, CharacterType.c),
       BbanStructurePart.accountNumber(18, CharacterType.c),
     ]),
 
-    Country.ME: BbanStructure([
+    CountryCode.ME: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(13, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(
@@ -634,14 +634,14 @@ class BbanStructure {
     ]),
 
     // Provisional
-    Country.MG: BbanStructure([
+    CountryCode.MG: BbanStructure([
       BbanStructurePart.bankCode(5, CharacterType.n),
       BbanStructurePart.branchCode(5, CharacterType.n),
       BbanStructurePart.accountNumber(11, CharacterType.c),
       BbanStructurePart.nationalCheckDigit(2, CharacterType.n),
     ]),
 
-    Country.MK: BbanStructure([
+    CountryCode.MK: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(10, CharacterType.c),
       BbanStructurePart.nationalCheckDigit(2, CharacterType.n),
@@ -650,19 +650,19 @@ class BbanStructure {
 
     // Provisional
     // refer https://countrywisecodes.com/mali/verify-iban-structure/ML13ML0160120102600100668497
-    Country.ML: BbanStructure([
+    CountryCode.ML: BbanStructure([
       BbanStructurePart.bankCode(1, CharacterType.a),
       BbanStructurePart.accountNumber(23, CharacterType.c),
     ]),
 
-    Country.MR: BbanStructure([
+    CountryCode.MR: BbanStructure([
       BbanStructurePart.bankCode(5, CharacterType.n),
       BbanStructurePart.branchCode(5, CharacterType.n),
       BbanStructurePart.accountNumber(11, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(2, CharacterType.n),
     ]),
 
-    Country.MT: BbanStructure([
+    CountryCode.MT: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.branchCode(5, CharacterType.n),
       BbanStructurePart.accountNumber(18, CharacterType.c),
@@ -671,7 +671,7 @@ class BbanStructure {
     // Spec: 4!a2!n2!n12!n3!n3!a
     //  No docs on the last 3!n -- assuming account type
     //  all found IBANs have '000'
-    Country.MU: BbanStructure([
+    CountryCode.MU: BbanStructure([
       BbanStructurePart.bankCode(6, CharacterType.c), // 4!a2!n
       BbanStructurePart.branchCode(2, CharacterType.n),
       BbanStructurePart.accountNumber(12, CharacterType.c),
@@ -680,79 +680,79 @@ class BbanStructure {
     ]),
 
     // Provisional
-    Country.MZ:
+    CountryCode.MZ:
         BbanStructure([BbanStructurePart.accountNumber(21, CharacterType.n)]),
 
     // Provisional
-    Country.NE: BbanStructure([
+    CountryCode.NE: BbanStructure([
       BbanStructurePart.bankCode(2, CharacterType.a),
       BbanStructurePart.accountNumber(22, CharacterType.n),
     ]),
 
     // Provisional
-    Country.NI: BbanStructure([
+    CountryCode.NI: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.accountNumber(24, CharacterType.n),
     ]),
 
-    Country.NL: BbanStructure([
+    CountryCode.NL: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.accountNumber(10, CharacterType.n),
     ]),
 
-    Country.NO: BbanStructure([
+    CountryCode.NO: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(6, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(1, CharacterType.n, nationalNO),
     ]),
 
-    Country.PK: BbanStructure([
+    CountryCode.PK: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.c),
       BbanStructurePart.accountNumber(16, CharacterType.c),
     ]),
 
     // 8!n16!n
-    Country.PL: BbanStructure([
+    CountryCode.PL: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.branchCode(4, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(1, CharacterType.n),
       BbanStructurePart.accountNumber(16, CharacterType.n),
     ]),
 
-    Country.PS: BbanStructure([
+    CountryCode.PS: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.accountNumber(21, CharacterType.c),
     ]),
 
-    Country.PT: BbanStructure([
+    CountryCode.PT: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.branchCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(11, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(2, CharacterType.n, nationalPT),
     ]),
 
-    Country.QA: BbanStructure([
+    CountryCode.QA: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.accountNumber(21, CharacterType.c),
     ]),
 
-    Country.RO: BbanStructure([
+    CountryCode.RO: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.accountNumber(16, CharacterType.c),
     ]),
 
-    Country.RS: BbanStructure([
+    CountryCode.RS: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(13, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(2, CharacterType.n),
     ]),
 
-    Country.SA: BbanStructure([
+    CountryCode.SA: BbanStructure([
       BbanStructurePart.bankCode(2, CharacterType.n),
       BbanStructurePart.accountNumber(18, CharacterType.c),
     ]),
 
-    Country.SC: BbanStructure([
+    CountryCode.SC: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.branchCode(2, CharacterType.n),
       BbanStructurePart.branchCheckDigit(2, CharacterType.n),
@@ -760,25 +760,25 @@ class BbanStructure {
       BbanStructurePart.currencyType(3, CharacterType.a),
     ]),
 
-    Country.SE: BbanStructure([
+    CountryCode.SE: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(16, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(1, CharacterType.n),
     ]),
 
-    Country.SI: BbanStructure([
+    CountryCode.SI: BbanStructure([
       BbanStructurePart.bankCode(2, CharacterType.n),
       BbanStructurePart.branchCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(8, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(2, CharacterType.n),
     ]),
 
-    Country.SK: BbanStructure([
+    CountryCode.SK: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(16, CharacterType.n),
     ]),
 
-    Country.SM: BbanStructure([
+    CountryCode.SM: BbanStructure([
       BbanStructurePart.nationalCheckDigit(1, CharacterType.a, nationalIT),
       BbanStructurePart.bankCode(5, CharacterType.n),
       BbanStructurePart.branchCode(5, CharacterType.n),
@@ -786,71 +786,71 @@ class BbanStructure {
     ]),
 
     // Provisional
-    Country.SN: BbanStructure([
+    CountryCode.SN: BbanStructure([
       BbanStructurePart.bankCode(5, CharacterType.c),
       BbanStructurePart.branchCode(5, CharacterType.n),
       BbanStructurePart.accountNumber(14, CharacterType.n),
     ]),
 
-    Country.ST: BbanStructure([
+    CountryCode.ST: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.branchCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(13, CharacterType.n),
     ]),
 
-    Country.SV: BbanStructure([
+    CountryCode.SV: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.branchCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(16, CharacterType.n),
     ]),
 
     // Provisional
-    Country.TG: BbanStructure([
+    CountryCode.TG: BbanStructure([
       BbanStructurePart.bankCode(2, CharacterType.a),
       BbanStructurePart.accountNumber(22, CharacterType.n),
     ]),
 
     // Provisional
-    Country.TD: BbanStructure([
+    CountryCode.TD: BbanStructure([
       BbanStructurePart.accountNumber(23, CharacterType.n),
       // @TODO is this france?
     ]),
 
-    Country.TL: BbanStructure([
+    CountryCode.TL: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(14, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(2, CharacterType.n),
     ]),
 
-    Country.TN: BbanStructure([
+    CountryCode.TN: BbanStructure([
       BbanStructurePart.bankCode(2, CharacterType.n),
       BbanStructurePart.branchCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(13, CharacterType.c),
       BbanStructurePart.nationalCheckDigit(2, CharacterType.c),
     ]),
 
-    Country.TR: BbanStructure([
+    CountryCode.TR: BbanStructure([
       BbanStructurePart.bankCode(5, CharacterType.n),
       BbanStructurePart.nationalCheckDigit(1, CharacterType.c),
       BbanStructurePart.accountNumber(16, CharacterType.c),
     ]),
 
-    Country.UA: BbanStructure([
+    CountryCode.UA: BbanStructure([
       BbanStructurePart.bankCode(6, CharacterType.n),
       BbanStructurePart.accountNumber(19, CharacterType.n),
     ]),
 
-    Country.VA: BbanStructure([
+    CountryCode.VA: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.c),
       BbanStructurePart.accountNumber(15, CharacterType.n),
     ]),
 
-    Country.VG: BbanStructure([
+    CountryCode.VG: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.accountNumber(16, CharacterType.n),
     ]),
 
-    Country.XK: BbanStructure([
+    CountryCode.XK: BbanStructure([
       BbanStructurePart.bankCode(2, CharacterType.n),
       BbanStructurePart.branchCode(2, CharacterType.n),
       BbanStructurePart.accountNumber(10, CharacterType.n),
@@ -900,7 +900,7 @@ class BbanStructure {
     return value;
   }
 
-  static BbanStructure? forCountry(Country country) {
+  static BbanStructure? forCountry(CountryCode country) {
     return structures[country];
   }
 
@@ -908,7 +908,7 @@ class BbanStructure {
   //   return objectValues(this.structures) as BbanStructure[];
   // }
 
-  static List<Country> supportedCountries() {
+  static List<CountryCode> supportedCountries() {
     return structures.keys.toList();
   }
 

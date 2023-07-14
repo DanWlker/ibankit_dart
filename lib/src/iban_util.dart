@@ -52,11 +52,11 @@ void validateBban(String countryCode, String bban) {
   structure.validate(bban);
 }
 
-bool isSupportedCountry(Country country) {
+bool isSupportedCountry(CountryCode country) {
   return BbanStructure.forCountry(country) != null;
 }
 
-int getIbanLength(Country country) {
+int getIbanLength(CountryCode country) {
   final structure = getBbanStructure(country.countryCode);
 
   if (structure == null) {
@@ -199,7 +199,7 @@ validateCountryCode(String iban, [bool hasStructure = true]) {
     );
   }
 
-  final Country? country = Country.countryByCode(countryCode);
+  final CountryCode? country = CountryCode.countryByCode(countryCode);
   if (country == null) {
     throw IbanFormatException(
       FormatViolation.COUNTRY_CODE_EXISTS,
@@ -275,7 +275,7 @@ int calculateMod(String iban) {
 }
 
 BbanStructure? getBbanStructure(String iban) {
-  final Country? country = Country.countryByCode(getCountryCode(iban));
+  final CountryCode? country = CountryCode.countryByCode(getCountryCode(iban));
 
   if (country == null) {
     return null;
@@ -284,7 +284,7 @@ BbanStructure? getBbanStructure(String iban) {
   return getBbanStructureByCountry(country);
 }
 
-BbanStructure? getBbanStructureByCountry(Country country) {
+BbanStructure? getBbanStructureByCountry(CountryCode country) {
   return BbanStructure.forCountry(country);
 }
 

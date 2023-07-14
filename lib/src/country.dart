@@ -2,7 +2,7 @@
 
 /// Country Code Enum
 /// http://en.wikipedia.org/wiki/ISO_3166-1
-enum Country {
+enum CountryCode {
   AD("AD", "Andorra", "AND"),
   AE("AE", "United Arab Emirates", "ARE"),
   AF("AF", "Afghanistan", "AFG"),
@@ -257,25 +257,25 @@ enum Country {
   final String countryCode;
   final String countryName;
   final String countryCodeIso;
-  const Country(this.countryCode, this.countryName, this.countryCodeIso);
+  const CountryCode(this.countryCode, this.countryName, this.countryCodeIso);
 
-  static final Map<String, Country> by2code = {};
-  static final Map<String, Country> by3code = {};
+  static final Map<String, CountryCode> by2code = {};
+  static final Map<String, CountryCode> by3code = {};
 
-  static Country? countryByCode(String code) {
+  static CountryCode? countryByCode(String code) {
     if (by2code.isEmpty) {
-      for (Country country in Country.values) {
+      for (CountryCode country in CountryCode.values) {
         by2code[country.countryCode] = country;
       }
     }
 
     if (by3code.isEmpty) {
-      for (Country country in Country.values) {
+      for (CountryCode country in CountryCode.values) {
         by3code[country.countryCodeIso] = country;
       }
     }
 
-    Country? info;
+    CountryCode? info;
     try {
       if (code.length == 3) {
         info = by3code[code];

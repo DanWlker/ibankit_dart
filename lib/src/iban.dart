@@ -122,8 +122,8 @@ class IBAN {
     _value = value;
   }
 
-  Country? getCountry() {
-    return Country.countryByCode(iban_util.getCountryCode(_value));
+  CountryCode? getCountry() {
+    return CountryCode.countryByCode(iban_util.getCountryCode(_value));
   }
 
   String getCheckDigit() {
@@ -220,9 +220,9 @@ class IBAN {
     return iban.replaceAll(RegExp(NON_ALPHANUM), "").toUpperCase();
   }
 
-  static IBAN random([Country? cc]) {
+  static IBAN random([CountryCode? cc]) {
     if (cc != null) {
-      return IBANBuilder().country(cc).build();
+      return IBANBuilder().countryCode(cc).build();
     }
 
     return IBANBuilder().build();
@@ -231,6 +231,6 @@ class IBAN {
   static String sample(String cc) {
     final String? s = samples[cc];
 
-    return s ?? samples[Country.DE.countryCode]!;
+    return s ?? samples[CountryCode.DE.countryCode]!;
   }
 }
