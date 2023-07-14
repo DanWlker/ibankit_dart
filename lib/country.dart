@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 /// Country Code Enum
 /// http://en.wikipedia.org/wiki/ISO_3166-1
 enum Country {

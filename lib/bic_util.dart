@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'country.dart';
 
 const int BIC8_LENGTH = 8;

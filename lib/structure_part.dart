@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:ibankit_dart/rand_int.dart';
 
 import 'bban_structure.dart';

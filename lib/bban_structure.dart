@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:ibankit_dart/country.dart';
 import 'package:ibankit_dart/structure_part.dart';
 

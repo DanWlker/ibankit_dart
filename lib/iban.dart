@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'country.dart';
 import 'iban_builder.dart';
 import 'iban_util.dart' as iban_util;
