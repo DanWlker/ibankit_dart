@@ -1,7 +1,8 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:ibankit_dart/country.dart';
-import 'package:ibankit_dart/structure_part.dart';
+import 'country.dart';
+import 'exceptions.dart';
+import 'structure_part.dart';
 
 int mod11(String value, List<int> weights) {
   int reducedValue = 0;
@@ -264,7 +265,10 @@ class BbanStructure {
             structure.extractValue(bban, PartType.BANK_CODE);
 
         if (accountNumber == null || bankCode == null) {
-          throw const FormatException("account number or bank code missing");
+          throw const IbanFormatException(
+            FormatViolation.NOT_EMPTY,
+            "account number or bank code missing",
+          );
         }
 
         final int value = int.parse("$bankCode$accountNumber");
@@ -890,7 +894,7 @@ class BbanStructure {
     final String? value = extractValue(bban, partType);
 
     if (value == null) {
-      throw Exception("Required part type [$partType] missing");
+      throw RequiredPartTypeMissing("Required part type [$partType] missing");
     }
 
     return value;
@@ -921,8 +925,10 @@ class BbanStructure {
     final int bbanLength = bban.length;
 
     if (expectedBbanLength != bbanLength) {
-      throw FormatException(
-          "[$bban] length is $bbanLength, expected BBAN length is: $expectedBbanLength");
+      throw IbanFormatException(
+        FormatViolation.BBAN_LENGTH,
+        "[$bban] length is $bbanLength, expected BBAN length is: $expectedBbanLength",
+      );
     }
   }
 
@@ -944,13 +950,20 @@ class BbanStructure {
     if (!part.validate(entryValue)) {
       switch (part.getCharacterType()) {
         case CharacterType.a:
-          throw FormatException(
-              "[$entryValue] must contain only upper case letters.");
+          throw IbanFormatException(
+            FormatViolation.BBAN_ONLY_UPPER_CASE_LETTERS,
+            "[$entryValue] must contain only upper case letters.",
+          );
         case CharacterType.c:
-          throw FormatException(
-              "[$entryValue] must contain only digits or letters.");
+          throw IbanFormatException(
+            FormatViolation.BBAN_ONLY_DIGITS_OR_LETTERS,
+            "[$entryValue] must contain only digits or letters.",
+          );
         case CharacterType.n:
-          throw FormatException("[$entryValue] must contain only digits.");
+          throw IbanFormatException(
+            FormatViolation.BBAN_ONLY_DIGITS,
+            "[$entryValue] must contain only digits.",
+          );
         default:
           break;
       }
@@ -960,7 +973,8 @@ class BbanStructure {
       final String expected = part.generate(bban, this);
 
       if (entryValue != expected) {
-        throw FormatException(
+        throw IbanFormatException(
+          FormatViolation.NATIONAL_CHECK_DIGIT,
           "national check digit(s) don't match expect=[$expected] actual=[$entryValue]",
         );
       }

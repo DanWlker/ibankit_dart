@@ -1,10 +1,10 @@
-import 'package:ibankit_dart/structure_part.dart';
-
 import 'bban_structure.dart';
 import 'country.dart';
+import 'exceptions.dart';
 import 'iban.dart';
 import 'iban_util.dart' as iban_util;
 import 'rand_int.dart';
+import 'structure_part.dart';
 
 class IBANBuilder {
   Country? _countryValue;
@@ -99,7 +99,9 @@ class IBANBuilder {
         _countryValue == null ? null : BbanStructure.forCountry(_countryValue!);
 
     if (structure == null) {
-      throw Exception("Country code is not supported. Code:$_countryValue");
+      throw UnsupportedCountryException(
+        "Country code is not supported. Code:$_countryValue",
+      );
     }
 
     for (BbanStructurePart part in structure.getParts()) {
@@ -161,7 +163,9 @@ class IBANBuilder {
         _countryValue == null ? null : BbanStructure.forCountry(_countryValue!);
 
     if (structure == null) {
-      throw Exception("Country code is not supported. Code:$_countryValue");
+      throw UnsupportedCountryException(
+        "Country code is not supported. Code:$_countryValue",
+      );
     }
 
     bool needCheckDigit = false;
@@ -172,32 +176,40 @@ class IBANBuilder {
           if (_bankCodeValue == null) {
             _bankCodeValue = entry.generate("", structure);
           } else if (!fillRandom) {
-            throw const FormatException(
-                "bankCode is required; it cannot be null");
+            throw const IbanFormatException(
+              FormatViolation.NOT_NULL,
+              "bankCode is required; it cannot be null",
+            );
           }
           break;
         case PartType.BRANCH_CODE:
           if (_branchCodeValue == null) {
             _branchCodeValue = entry.generate("", structure);
           } else if (!fillRandom) {
-            throw const FormatException(
-                "branchCode is required; it cannot be null");
+            throw const IbanFormatException(
+              FormatViolation.NOT_NULL,
+              "branchCode is required; it cannot be null",
+            );
           }
           break;
         case PartType.BRANCH_CHECK_DIGIT:
           if (_branchCheckDigitValue == null) {
             _branchCheckDigitValue = entry.generate("", structure);
           } else if (!fillRandom) {
-            throw const FormatException(
-                "branchCheckDigit is required; it cannot be null");
+            throw const IbanFormatException(
+              FormatViolation.NOT_NULL,
+              "branchCheckDigit is required; it cannot be null",
+            );
           }
           break;
         case PartType.ACCOUNT_NUMBER:
           if (_accountNumberValue == null) {
             _accountNumberValue = entry.generate("", structure);
           } else if (!fillRandom) {
-            throw const FormatException(
-                "accountNumber is required; it cannot be null");
+            throw const IbanFormatException(
+              FormatViolation.NOT_NULL,
+              "accountNumber is required; it cannot be null",
+            );
           }
           break;
         case PartType.NATIONAL_CHECK_DIGIT:
@@ -210,24 +222,30 @@ class IBANBuilder {
           if (_accountTypeValue == null) {
             _accountTypeValue = entry.generate("", structure);
           } else if (!fillRandom) {
-            throw const FormatException(
-                "accountType is required; it cannot be null");
+            throw const IbanFormatException(
+              FormatViolation.NOT_NULL,
+              "accountType is required; it cannot be null",
+            );
           }
           break;
         case PartType.OWNER_ACCOUNT_NUMBER:
           if (_ownerAccountTypeValue == null) {
             _ownerAccountTypeValue = entry.generate("", structure);
           } else if (!fillRandom) {
-            throw const FormatException(
-                "ownerAccountType is required; it cannot be null");
+            throw const IbanFormatException(
+              FormatViolation.NOT_NULL,
+              "ownerAccountType is required; it cannot be null",
+            );
           }
           break;
         case PartType.IDENTIFICATION_NUMBER:
           if (_identificationNumberValue == null) {
             _identificationNumberValue = entry.generate("", structure);
           } else if (!fillRandom) {
-            throw const FormatException(
-                "indentificationNumber is required; it cannot be null");
+            throw const IbanFormatException(
+              FormatViolation.NOT_NULL,
+              "indentificationNumber is required; it cannot be null",
+            );
           }
           break;
         default:

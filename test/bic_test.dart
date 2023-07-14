@@ -1,4 +1,4 @@
-import 'package:ibankit_dart/bic.dart';
+import 'package:ibankit_dart/ibankit_dart.dart';
 import 'package:test/test.dart';
 
 void main() {

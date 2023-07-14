@@ -1,5 +1,5 @@
-export 'country.dart';
-export 'bban_structure.dart';
-export 'iban.dart';
-export 'iban_builder.dart';
-export 'bic.dart';
+export 'src/country.dart';
+export 'src/iban.dart';
+export 'src/iban_builder.dart';
+export 'src/bic.dart';
+export 'src/exceptions.dart';

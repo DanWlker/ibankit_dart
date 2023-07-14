@@ -1,8 +1,9 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 
-import 'structure_part.dart';
 import 'bban_structure.dart';
 import 'country.dart';
+import 'exceptions.dart';
+import 'structure_part.dart';
 
 const String ucRegex = r"^[A-Z]+$";
 const String numRegex = r"^[0-9]+$";
@@ -59,7 +60,9 @@ int getIbanLength(Country country) {
   final structure = getBbanStructure(country.countryCode);
 
   if (structure == null) {
-    throw Exception("Unsupported country. Code:$country");
+    throw UnsupportedCountryException(
+      "Unsupported country. Code:$country",
+    );
   }
 
   return COUNTRY_CODE_LENGTH + CHECK_DIGIT_LENGTH + structure.getBbanLength();
@@ -159,21 +162,30 @@ void validateCheckDigitChecksum(String iban) {
     final String checkDigit = getCheckDigit(iban);
     final String expectedCheckDigit = calculateCheckDigit(iban);
 
-    throw Exception(
-        "[$iban] has invalid check digit: $checkDigit, expected check digit is: $expectedCheckDigit");
+    throw InvalidCheckDigitException(
+      "[$iban] has invalid check digit: $checkDigit, expected check digit is: $expectedCheckDigit",
+      checkDigit,
+      expectedCheckDigit,
+    );
   }
 }
 
 void validateNotEmpty(String iban) {
   if (iban.isEmpty) {
-    throw Exception("Empty string can't be a valid Iban.");
+    throw IbanFormatException(
+      FormatViolation.NOT_EMPTY,
+      "Empty string can't be a valid Iban.",
+    );
   }
 }
 
 validateCountryCode(String iban, [bool hasStructure = true]) {
   // check if iban contains 2 char country code
   if (iban.length < COUNTRY_CODE_LENGTH) {
-    throw Exception("Iban must contain 2 char country code.");
+    throw IbanFormatException(
+      FormatViolation.COUNTRY_CODE_TWO_LETTERS,
+      "Iban must contain 2 char country code.",
+    );
   }
 
   final String countryCode = getCountryCode(iban);
@@ -181,19 +193,27 @@ validateCountryCode(String iban, [bool hasStructure = true]) {
   // check case sensitivity
   if (countryCode != countryCode.toUpperCase() ||
       !RegExp(ucRegex).hasMatch(countryCode)) {
-    throw Exception("Iban country code must contain upper case letters.");
+    throw IbanFormatException(
+      FormatViolation.COUNTRY_CODE_ONLY_UPPER_CASE_LETTERS,
+      "Iban country code must contain upper case letters.",
+    );
   }
 
   final Country? country = Country.countryByCode(countryCode);
   if (country == null) {
-    throw Exception("Iban contains non existing country code.");
+    throw IbanFormatException(
+      FormatViolation.COUNTRY_CODE_EXISTS,
+      "Iban contains non existing country code.",
+    );
   }
 
   if (hasStructure) {
     // check if country is supported
     final BbanStructure? structure = BbanStructure.forCountry(country);
     if (structure == null) {
-      throw Exception("Country code is not supported.");
+      throw UnsupportedCountryException(
+        "Country code is not supported.",
+      );
     }
   }
 }
@@ -201,14 +221,19 @@ validateCountryCode(String iban, [bool hasStructure = true]) {
 void validateCheckDigitPresence(String iban) {
   // check if iban contains 2 digit check digit
   if (iban.length < COUNTRY_CODE_LENGTH + CHECK_DIGIT_LENGTH) {
-    throw const FormatException("Iban must contain 2 digit check digit.");
+    throw const IbanFormatException(
+      FormatViolation.CHECK_DIGIT_TWO_DIGITS,
+      "Iban must contain 2 digit check digit.",
+    );
   }
 
   final String checkDigit = getCheckDigit(iban);
 
   if (!RegExp(numRegex).hasMatch(checkDigit)) {
-    throw const FormatException(
-        "Iban's check digit should contain only digits.");
+    throw const IbanFormatException(
+      FormatViolation.CHECK_DIGIT_ONLY_DIGITS,
+      "Iban's check digit should contain only digits.",
+    );
   }
 }
 
@@ -239,7 +264,10 @@ int calculateMod(String iban) {
     } else if (V0 <= code && code <= V9) {
       total = addSum(total, code - V0);
     } else {
-      throw FormatException("Invalid Character[$code] = '$code'");
+      throw IbanFormatException(
+        FormatViolation.IBAN_VALID_CHARACTERS,
+        "Invalid Character[$code] = '$code'",
+      );
     }
   }
 

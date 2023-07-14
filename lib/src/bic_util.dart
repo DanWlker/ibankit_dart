@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'country.dart';
+import 'exceptions.dart';
 
 const int BIC8_LENGTH = 8;
 const int BIC11_LENGTH = 11;
@@ -42,13 +43,17 @@ bool hasBranchCode(String bic) {
 
 void validateEmpty(String bic) {
   if (bic.isEmpty) {
-    throw const FormatException("Empty string can't be a valid Bic.");
+    throw const IbanFormatException(
+      FormatViolation.NOT_EMPTY,
+      "Empty string can't be a valid Bic.",
+    );
   }
 }
 
 void validateLength(String bic) {
   if (bic.length != BIC8_LENGTH && bic.length != BIC11_LENGTH) {
-    throw const FormatException(
+    throw const IbanFormatException(
+      FormatViolation.BIC_LENGTH_8_OR_11,
       "Bic length must be $BIC8_LENGTH or $BIC11_LENGTH",
     );
   }
@@ -56,7 +61,10 @@ void validateLength(String bic) {
 
 void validateCase(String bic) {
   if (bic != bic.toUpperCase()) {
-    throw const FormatException("Bic must contain only upper case letters.");
+    throw const IbanFormatException(
+      FormatViolation.BIC_ONLY_UPPER_CASE_LETTERS,
+      "Bic must contain only upper case letters.",
+    );
   }
 }
 
@@ -64,8 +72,10 @@ void validateBankCode(String bic) {
   String bankCode = getBankCode(bic);
 
   if (!RegExp(ucRegex).hasMatch(bankCode)) {
-    throw FormatException(
-        "Bank code must contain only letters. Code:$bankCode");
+    throw IbanFormatException(
+      FormatViolation.BANK_CODE_ONLY_LETTERS,
+      "Bank code must contain only letters. Code:$bankCode",
+    );
   }
 }
 
@@ -75,13 +85,16 @@ void validateCountryCode(String bic) {
   if (countryCode.length < COUNTRY_CODE_LENGTH ||
       countryCode != countryCode.toUpperCase() ||
       !RegExp(ucRegex).hasMatch(countryCode)) {
-    throw FormatException(
+    throw IbanFormatException(
+      FormatViolation.COUNTRY_CODE_ONLY_UPPER_CASE_LETTERS,
       "Bic country code must contain upper case letters. Code:$countryCode",
     );
   }
 
   if (Country.countryByCode(countryCode) == null) {
-    throw Exception("Country code is not supported. Code:$countryCode");
+    throw UnsupportedCountryException(
+      "Country code is not supported. Code:$countryCode",
+    );
   }
 }
 
@@ -89,7 +102,8 @@ void validateLocationCode(String bic) {
   String locationCode = getLocationCode(bic);
 
   if (!RegExp(ucnumRegex).hasMatch(locationCode)) {
-    throw FormatException(
+    throw IbanFormatException(
+      FormatViolation.LOCATION_CODE_ONLY_LETTERS_OR_DIGITS,
       "Location code must contain only letters or digits. Code:$locationCode",
     );
   }
@@ -99,7 +113,8 @@ void validateBranchCode(String bic) {
   String branchCode = getBranchCode(bic);
 
   if (!RegExp(ucnumRegex).hasMatch(branchCode)) {
-    throw FormatException(
+    throw IbanFormatException(
+      FormatViolation.BRANCH_CODE_ONLY_LETTERS_OR_DIGITS,
       "Branch code must contain only letters or digits. Code:$branchCode",
     );
   }
