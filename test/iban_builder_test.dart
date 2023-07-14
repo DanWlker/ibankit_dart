@@ -1,7 +1,7 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:ibankit_dart/country.dart';
 import 'package:ibankit_dart/iban.dart';
 import 'package:ibankit_dart/iban_builder.dart';
+import 'package:test/test.dart';
 
 void main() {
   group("IBANBuilder", () {
