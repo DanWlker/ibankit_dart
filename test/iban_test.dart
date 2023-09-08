@@ -40,7 +40,7 @@ void main() {
       });
     });
 
-    group("Test IBAN Version 80", () {
+    group("Test IBAN Version 95", () {
       test("AD", () {
         final iban = IBAN("AD12 0001 2030 200359100100");
         expect(iban.getCountry()?.countryCode, "AD");
@@ -113,6 +113,14 @@ void main() {
         expect(iban.getAccountNumber(), "00001299123456");
       });
 
+      test("BI", () {
+        final iban = IBAN("BI4210000100010000332045181");
+        expect(iban.getCountry()?.countryCode, "BI");
+        expect(iban.getBankCode(), "10000");
+        expect(iban.getBranchCode(), "10001");
+        expect(iban.getAccountNumber(), "00003320451");
+      });
+
       test("BR", () {
         final iban = IBAN("BR9700360305000010009795493P1");
         expect(iban.getCountry()?.countryCode, "BR");
@@ -168,6 +176,14 @@ void main() {
         expect(iban.getAccountNumber(), "0532013000");
       });
 
+      test("DJ", () {
+        final iban = IBAN("DJ2100010000000154000100186");
+        expect(iban.getCountry()?.countryCode, "DJ");
+        expect(iban.getBankCode(), "00010");
+        expect(iban.getBranchCode(), "00000");
+        expect(iban.getAccountNumber(), "01540001001");
+      });
+
       test("DK", () {
         final iban = IBAN("DK5000400440116243");
         expect(iban.getCountry()?.countryCode, "DK");
@@ -191,6 +207,14 @@ void main() {
         expect(iban.getNationalCheckDigit(), "5");
       });
 
+      test("EG", () {
+        final iban = IBAN("EG380019000500000000263180002");
+        expect(iban.getCountry()?.countryCode, "EG");
+        expect(iban.getBankCode(), "0019");
+        expect(iban.getBranchCode(), "0005");
+        expect(iban.getAccountNumber(), "00000000263180002");
+      });
+
       test("ES", () {
         final iban = IBAN("ES9121000418450200051332");
         expect(iban.getCountry()?.countryCode, "ES");
@@ -205,6 +229,13 @@ void main() {
         expect(iban.getCountry()?.countryCode, "FI");
         expect(iban.getBankCode(), "123");
         expect(iban.getAccountNumber(), "45600000785");
+      });
+
+      test("FK", () {
+        final iban = IBAN("FK88SC123456789012");
+        expect(iban.getCountry()?.countryCode, "FK");
+        expect(iban.getBankCode(), "SC");
+        expect(iban.getAccountNumber(), "123456789012");
       });
 
       test("FO", () {
@@ -392,6 +423,14 @@ void main() {
         expect(iban.getAccountNumber(), "0000435195001");
       });
 
+      test("LY", () {
+        final iban = IBAN("LY83002048000020100120361");
+        expect(iban.getCountry()?.countryCode, "LY");
+        expect(iban.getBankCode(), "002");
+        expect(iban.getBranchCode(), "048");
+        expect(iban.getAccountNumber(), "000020100120361");
+      });
+
       test("MC", () {
         final iban = IBAN("MC5811222000010123456789030");
         expect(iban.getCountry()?.countryCode, "MC");
@@ -424,6 +463,13 @@ void main() {
         expect(iban.getNationalCheckDigit(), "84");
       });
 
+      test("MN", () {
+        final iban = IBAN("MN121234123456789123");
+        expect(iban.getCountry()?.countryCode, "MN");
+        expect(iban.getBankCode(), "1234");
+        expect(iban.getAccountNumber(), "123456789123");
+      });
+
       test("MR", () {
         final iban = IBAN("MR1300020001010000123456753");
         expect(iban.getCountry()?.countryCode, "MR");
@@ -449,6 +495,13 @@ void main() {
         expect(iban.getAccountNumber(), "101030300200");
         expect(iban.getAccountType(), "000");
         expect(iban.getCurrencyType(), "MUR");
+      });
+
+      test("NI", () {
+        final iban = IBAN("NI79BAMC00000000000003123123");
+        expect(iban.getCountry()?.countryCode, "NI");
+        expect(iban.getBankCode(), "BAMC");
+        expect(iban.getAccountNumber(), "00000000000003123123");
       });
 
       test("NL", () {
@@ -521,6 +574,14 @@ void main() {
         expect(iban.getNationalCheckDigit(), "79");
       });
 
+      test("RU", () {
+        final iban = IBAN("RU0204452560040702810412345678901");
+        expect(iban.getCountry()?.countryCode, "RU");
+        expect(iban.getBankCode(), "044525600");
+        expect(iban.getBranchCode(), "40702");
+        expect(iban.getAccountNumber(), "810412345678901");
+      });
+
       test("SA", () {
         final iban = IBAN("SA0380000000608010167519");
         expect(iban.getCountry()?.countryCode, "SA");
@@ -535,6 +596,13 @@ void main() {
         expect(iban.getBranchCode(), "11");
         expect(iban.getBranchCheckDigit(), "01");
         expect(iban.getAccountNumber(), "0000000000001497");
+      });
+
+      test("SD", () {
+        final iban = IBAN("SD8811123456789012");
+        expect(iban.getCountry()?.countryCode, "SD");
+        expect(iban.getBankCode(), "11");
+        expect(iban.getAccountNumber(), "123456789012");
       });
 
       test("SE", () {
@@ -567,6 +635,14 @@ void main() {
         expect(iban.getBankCode(), "03225");
         expect(iban.getBranchCode(), "09800");
         expect(iban.getAccountNumber(), "000000270100");
+      });
+
+      test("SO", () {
+        final iban = IBAN("SO061000001123123456789");
+        expect(iban.getCountry()?.countryCode, "SO");
+        expect(iban.getBankCode(), "1000");
+        expect(iban.getBranchCode(), "001");
+        expect(iban.getAccountNumber(), "123123456789");
       });
 
       test("ST", () {
@@ -650,11 +726,6 @@ void main() {
       test("BF", () {
         final iban = IBAN("BF2312345678901234567890123");
         expect(iban.getCountry()?.countryCode, "BF");
-      });
-
-      test("BI", () {
-        final iban = IBAN("BI41123456789012");
-        expect(iban.getCountry()?.countryCode, "BI");
       });
 
       test("BJ", () {
@@ -747,11 +818,6 @@ void main() {
         expect(iban.getCountry()?.countryCode, "CG");
       });
 
-      test("EG", () {
-        final iban = IBAN("EG800002000156789012345180002");
-        expect(iban.getCountry()?.countryCode, "EG");
-      });
-
       test("GA", () {
         final iban = IBAN("GA2140021010032001890020126");
         expect(iban.getCountry()?.countryCode, "GA");
@@ -760,11 +826,6 @@ void main() {
       test("MA", () {
         final iban = IBAN("MA64011519000001205000534921");
         expect(iban.getCountry()?.countryCode, "MA");
-      });
-
-      test("NI", () {
-        final iban = IBAN("NI92BAMC000000000000000003123123");
-        expect(iban.getCountry()?.countryCode, "NI");
       });
 
       test("NE", () {

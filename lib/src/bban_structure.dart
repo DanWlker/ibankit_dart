@@ -215,12 +215,14 @@ class BbanStructure {
   ]);
 
   static Map<CountryCode, BbanStructure> structures = {
+    // AD2!n4!n4!n12!c
     CountryCode.AD: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.branchCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(12, CharacterType.c),
     ]),
 
+    // AE2!n3!n16!n
     CountryCode.AE: BbanStructure([
       BbanStructurePart.bankCode(3, CharacterType.n),
       BbanStructurePart.accountNumber(16, CharacterType.c),
@@ -301,8 +303,15 @@ class BbanStructure {
     ]),
 
     // Provisional
-    CountryCode.BI:
-        BbanStructure([BbanStructurePart.accountNumber(12, CharacterType.n)]),
+    CountryCode.BI: BbanStructure([
+      // BI2!n5!n5!n11!n2!n
+      // Changed on October 21 (from 12!n)
+      BbanStructurePart.bankCode(5, CharacterType.n),
+      BbanStructurePart.branchCode(5, CharacterType.n),
+      BbanStructurePart.accountNumber(11, CharacterType.n),
+      BbanStructurePart.nationalCheckDigit(2, CharacterType.n),
+      // BbanStructurePart.accountNumber(12, CharacterType.n),
+    ]),
 
     // Provisional
     CountryCode.BJ: BbanStructure([
@@ -391,7 +400,14 @@ class BbanStructure {
     ]),
 
     // Provisional
-    CountryCode.DJ: _bbanFR,
+    CountryCode.DJ: BbanStructure([
+      // BI2!n5!n5!n11!n2!n
+      // Changed on May 22 (from France's standard)
+      BbanStructurePart.bankCode(5, CharacterType.n),
+      BbanStructurePart.branchCode(5, CharacterType.n),
+      BbanStructurePart.accountNumber(11, CharacterType.n),
+      BbanStructurePart.nationalCheckDigit(2, CharacterType.n),
+    ]),
 
     // Registry defines 4!n9!n1!n -- however no information on
     // nationalCheckDigit exist and all documentation discusses
@@ -441,6 +457,12 @@ class BbanStructure {
       BbanStructurePart.accountNumber(11, CharacterType.n),
     ]),
 
+    CountryCode.FK: BbanStructure([
+      // Added July 23
+      BbanStructurePart.bankCode(2, CharacterType.a),
+      BbanStructurePart.accountNumber(12, CharacterType.n),
+    ]),
+
     CountryCode.FO: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(9, CharacterType.n),
@@ -463,6 +485,7 @@ class BbanStructure {
     ]),
 
     CountryCode.GE: BbanStructure([
+      // Added Apr 23
       BbanStructurePart.bankCode(2, CharacterType.a),
       BbanStructurePart.accountNumber(16, CharacterType.n),
     ]),
@@ -655,6 +678,13 @@ class BbanStructure {
       BbanStructurePart.accountNumber(23, CharacterType.c),
     ]),
 
+    CountryCode.MN: BbanStructure([
+      // MN2!n4!n12!n
+      // Added April 2023
+      BbanStructurePart.bankCode(4, CharacterType.n),
+      BbanStructurePart.accountNumber(12, CharacterType.n),
+    ]),
+
     CountryCode.MR: BbanStructure([
       BbanStructurePart.bankCode(5, CharacterType.n),
       BbanStructurePart.branchCode(5, CharacterType.n),
@@ -689,10 +719,11 @@ class BbanStructure {
       BbanStructurePart.accountNumber(22, CharacterType.n),
     ]),
 
-    // Provisional
     CountryCode.NI: BbanStructure([
+      // NI2!n4!a20!n
+      // Added April 2023
       BbanStructurePart.bankCode(4, CharacterType.a),
-      BbanStructurePart.accountNumber(24, CharacterType.n),
+      BbanStructurePart.accountNumber(20, CharacterType.n),
     ]),
 
     CountryCode.NL: BbanStructure([
@@ -747,6 +778,14 @@ class BbanStructure {
       BbanStructurePart.nationalCheckDigit(2, CharacterType.n),
     ]),
 
+    CountryCode.RU: BbanStructure([
+      // RU2!n9!n5!n15!c
+      // Added May 2022
+      BbanStructurePart.bankCode(9, CharacterType.n),
+      BbanStructurePart.branchCode(5, CharacterType.n),
+      BbanStructurePart.accountNumber(15, CharacterType.c),
+    ]),
+
     CountryCode.SA: BbanStructure([
       BbanStructurePart.bankCode(2, CharacterType.n),
       BbanStructurePart.accountNumber(18, CharacterType.c),
@@ -758,6 +797,13 @@ class BbanStructure {
       BbanStructurePart.branchCheckDigit(2, CharacterType.n),
       BbanStructurePart.accountNumber(16, CharacterType.n),
       BbanStructurePart.currencyType(3, CharacterType.a),
+    ]),
+
+    CountryCode.SD: BbanStructure([
+      // SD2!n2!n12!n
+      // Added October 2021
+      BbanStructurePart.bankCode(2, CharacterType.n),
+      BbanStructurePart.accountNumber(12, CharacterType.n),
     ]),
 
     CountryCode.SE: BbanStructure([
@@ -792,6 +838,14 @@ class BbanStructure {
       BbanStructurePart.accountNumber(14, CharacterType.n),
     ]),
 
+    CountryCode.SO: BbanStructure([
+      // SO2!n4!n3!n12!n
+      // Added Feb 2023
+      BbanStructurePart.bankCode(4, CharacterType.n),
+      BbanStructurePart.branchCode(3, CharacterType.n),
+      BbanStructurePart.accountNumber(12, CharacterType.n),
+    ]),
+
     CountryCode.ST: BbanStructure([
       BbanStructurePart.bankCode(4, CharacterType.n),
       BbanStructurePart.branchCode(4, CharacterType.n),
@@ -799,6 +853,8 @@ class BbanStructure {
     ]),
 
     CountryCode.SV: BbanStructure([
+      // SV2!n4!a20!n
+      // Added March 2021
       BbanStructurePart.bankCode(4, CharacterType.a),
       BbanStructurePart.branchCode(4, CharacterType.n),
       BbanStructurePart.accountNumber(16, CharacterType.n),
