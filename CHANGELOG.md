@@ -35,3 +35,7 @@ Fix bank code validation ISO-9362:2022, in line with ibankit-js v1.6.4
 ## 3.0.0-dev.1
 
 Refactor to use more dart features and follow very_good_analysis lints
+
+## 3.0.0-dev.2
+
+Refactor to use more dart features
