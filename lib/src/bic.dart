@@ -9,22 +9,17 @@ class BIC {
   }
   final String _value;
 
-  String getBankCode() {
-    return bic_util.getBankCode(_value);
-  }
+  String get bankCode => bic_util.getBankCode(_value);
 
   /// Country representation of Bic's country code.
-  CountryCode? getCountry() {
-    return CountryCode.countryByCode(bic_util.getCountryCode(_value));
-  }
+  CountryCode? get country =>
+      CountryCode.countryByCode(bic_util.getCountryCode(_value));
 
   /// string representation of Bic's location code.
-  String getLocationCode() {
-    return bic_util.getLocationCode(_value);
-  }
+  String get locationCode => bic_util.getLocationCode(_value);
 
   /// string representation of Bic's branch code, null if Bic has no branch code.
-  String? getBranchCode() {
+  String? get branchCode {
     if (bic_util.hasBranchCode(_value)) {
       return bic_util.getBranchCode(_value);
     }

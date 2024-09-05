@@ -116,9 +116,7 @@ class BbanStructurePart {
   bool trailingSeparator;
   String Function(String bban, BbanStructure structure)? _generate;
 
-  PartType getPartType() {
-    return _entryType;
-  }
+  PartType get entryType => _entryType;
 
   String Function(String bban, BbanStructure structure) get generate =>
       _generate ?? _defaultGenerator;
@@ -129,13 +127,9 @@ class BbanStructurePart {
 
   bool get hasGenerator => _generate != null;
 
-  CharacterType getCharacterType() {
-    return _characterType;
-  }
+  CharacterType get characterType => _characterType;
 
-  int getLength() {
-    return _length;
-  }
+  int get length => _length;
 
   /// Check to see if the string value is valid for the entry
   bool validate(String value) {
@@ -147,7 +141,7 @@ class BbanStructurePart {
     final charChoices = _characterType.sampleString;
 
     final s = <String>[];
-    for (var i = 0; i < getLength(); ++i) {
+    for (var i = 0; i < _length; ++i) {
       s.add(charChoices[randInt(charChoices.length)]);
     }
 

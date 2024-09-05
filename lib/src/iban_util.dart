@@ -65,7 +65,7 @@ int getIbanLength(CountryCode country) {
     );
   }
 
-  return COUNTRY_CODE_LENGTH + CHECK_DIGIT_LENGTH + structure.getBbanLength();
+  return COUNTRY_CODE_LENGTH + CHECK_DIGIT_LENGTH + structure.bbanLength;
 }
 
 String getCheckDigit(String iban) {
@@ -150,11 +150,11 @@ String toFormattedStringBBAN(String iban, [String separator = ' ']) {
   }
 
   final bban = getBban(iban);
-  final listParts = structure.getParts();
+  final listParts = structure.entries;
 
   final parts = <String>[];
   for (var i = 0; i < listParts.length; ++i) {
-    final value = structure.extractValue(bban, listParts[i].getPartType());
+    final value = structure.extractValue(bban, listParts[i].entryType);
 
     parts
       ..add(value ?? '')

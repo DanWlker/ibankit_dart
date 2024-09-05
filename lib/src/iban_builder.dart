@@ -70,8 +70,8 @@ class IBANBuilder {
       );
     }
 
-    for (final part in structure.getParts()) {
-      switch (part.getPartType()) {
+    for (final part in structure.entries) {
+      switch (part.entryType) {
         case PartType.BANK_CODE:
           if (bankCodeValue != null) {
             parts.add(bankCodeValue!);
@@ -136,8 +136,8 @@ class IBANBuilder {
 
     var needCheckDigit = false;
 
-    for (final entry in structure.getParts()) {
-      switch (entry.getPartType()) {
+    for (final entry in structure.entries) {
+      switch (entry.entryType) {
         case PartType.BANK_CODE:
           if (bankCodeValue == null) {
             bankCodeValue = entry.generate('', structure);
@@ -181,7 +181,7 @@ class IBANBuilder {
         case PartType.NATIONAL_CHECK_DIGIT:
           if (nationalCheckDigitValue == null) {
             needCheckDigit = true;
-            nationalCheckDigitValue = ''.padLeft(entry.getLength(), '0');
+            nationalCheckDigitValue = ''.padLeft(entry.length, '0');
           }
           break;
         case PartType.ACCOUNT_TYPE:
@@ -220,8 +220,8 @@ class IBANBuilder {
     }
 
     if (needCheckDigit) {
-      for (final entry in structure.getParts()) {
-        if (entry.getPartType() == PartType.NATIONAL_CHECK_DIGIT) {
+      for (final entry in structure.entries) {
+        if (entry.entryType == PartType.NATIONAL_CHECK_DIGIT) {
           final bban = _formatBban();
 
           nationalCheckDigitValue = entry.generate(bban, structure);

@@ -121,53 +121,30 @@ class IBAN {
   }
   late String _value;
 
-  CountryCode? getCountry() {
-    return CountryCode.countryByCode(iban_util.getCountryCode(_value));
-  }
+  CountryCode? get country =>
+      CountryCode.countryByCode(iban_util.getCountryCode(_value));
 
-  String getCheckDigit() {
-    return iban_util.getCheckDigit(_value);
-  }
+  String get checkDigit => iban_util.getCheckDigit(_value);
 
-  String? getAccountNumber() {
-    return iban_util.getAccountNumber(_value);
-  }
+  String? get accountNumber => iban_util.getAccountNumber(_value);
 
-  String? getBankCode() {
-    return iban_util.getBankCode(_value);
-  }
+  String? get bankCode => iban_util.getBankCode(_value);
 
-  String? getBranchCode() {
-    return iban_util.getBranchCode(_value);
-  }
+  String? get branchCode => iban_util.getBranchCode(_value);
 
-  String? getNationalCheckDigit() {
-    return iban_util.getNationalCheckDigit(_value);
-  }
+  String? get nationalCheckDigit => iban_util.getNationalCheckDigit(_value);
 
-  String? getBranchCheckDigit() {
-    return iban_util.getBranchCheckDigit(_value);
-  }
+  String? get branchCheckDigit => iban_util.getBranchCheckDigit(_value);
 
-  String? getCurrencyType() {
-    return iban_util.getCurrencyType(_value);
-  }
+  String? get currencyType => iban_util.getCurrencyType(_value);
 
-  String? getAccountType() {
-    return iban_util.getAccountType(_value);
-  }
+  String? get accountType => iban_util.getAccountType(_value);
 
-  String? getOwnerAccountType() {
-    return iban_util.getOwnerAccountType(_value);
-  }
+  String? get ownerAccountType => iban_util.getOwnerAccountType(_value);
 
-  String? getIdentificationNumber() {
-    return iban_util.getIdentificationNumber(_value);
-  }
+  String? get identificationNumber => iban_util.getIdentificationNumber(_value);
 
-  String getBban() {
-    return iban_util.getBban(_value);
-  }
+  String get bban => iban_util.getBban(_value);
 
   @override
   String toString() {

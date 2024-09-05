@@ -1350,9 +1350,7 @@ class BbanStructure {
 
   final List<BbanStructurePart> _entries;
 
-  List<BbanStructurePart> getParts() {
-    return _entries;
-  }
+  List<BbanStructurePart> get entries => _entries;
 
   void validate(String bban) {
     _validateBbanLength(bban);
@@ -1363,13 +1361,13 @@ class BbanStructure {
     var bbanPartOffset = 0;
     String? result;
 
-    for (final part in getParts()) {
-      final partLength = part.getLength();
+    for (final part in _entries) {
+      final partLength = part.length;
       final partValue =
           bban.substring(bbanPartOffset, bbanPartOffset + partLength);
 
       bbanPartOffset = bbanPartOffset + partLength;
-      if (part.getPartType() == partType) {
+      if (part.entryType == partType) {
         result = (result ?? '') + partValue;
       }
     }
@@ -1399,16 +1397,16 @@ class BbanStructure {
     return structures.keys.toList();
   }
 
-  int getBbanLength() {
+  int get bbanLength {
     var total = 0;
     for (var i = 0; i < _entries.length; ++i) {
-      total += _entries[i].getLength();
+      total += _entries[i].length;
     }
     return total;
   }
 
   void _validateBbanLength(String bban) {
-    final expectedBbanLength = getBbanLength();
+    final expectedBbanLength = this.bbanLength;
     final bbanLength = bban.length;
 
     if (expectedBbanLength != bbanLength) {
@@ -1422,8 +1420,8 @@ class BbanStructure {
   void _validateBbanEntries(String bban) {
     var offset = 0;
 
-    for (final part in getParts()) {
-      final partLength = part.getLength();
+    for (final part in _entries) {
+      final partLength = part.length;
       final entryValue = bban.substring(offset, offset + partLength);
 
       offset = offset + partLength;
@@ -1438,7 +1436,7 @@ class BbanStructure {
     String entryValue,
   ) {
     if (!part.validate(entryValue)) {
-      switch (part.getCharacterType()) {
+      switch (part.characterType) {
         case CharacterType.a:
           throw IbanFormatException(
             FormatViolation.BBAN_ONLY_UPPER_CASE_LETTERS,
@@ -1458,8 +1456,7 @@ class BbanStructure {
           break;
       }
     }
-    if (part.getPartType() == PartType.NATIONAL_CHECK_DIGIT &&
-        part.hasGenerator) {
+    if (part.entryType == PartType.NATIONAL_CHECK_DIGIT && part.hasGenerator) {
       final expected = part.generate(bban, this);
 
       if (entryValue != expected) {

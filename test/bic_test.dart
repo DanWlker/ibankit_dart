@@ -25,37 +25,37 @@ void main() {
       test('bank code', () {
         final bic = BIC('DEUTDEFF500');
 
-        expect(bic.getBankCode(), 'DEUT');
+        expect(bic.bankCode, 'DEUT');
       });
 
       test('bank code alphanum', () {
         final bic = BIC('E097AEXXXXX');
 
-        expect(bic.getBankCode(), 'E097');
+        expect(bic.bankCode, 'E097');
       });
 
       test('country code', () {
         final bic = BIC('DEUTDEFF500');
 
-        expect(bic.getCountry()?.countryCode, 'DE');
+        expect(bic.country?.countryCode, 'DE');
       });
 
       test('branch code', () {
         final bic = BIC('DEUTDEFF500');
 
-        expect(bic.getBranchCode(), '500');
+        expect(bic.branchCode, '500');
       });
 
       test('branch code', () {
         final bic = BIC('DEUTDEFF');
 
-        expect(bic.getBranchCode(), null);
+        expect(bic.branchCode, null);
       });
 
       test('location code', () {
         final bic = BIC('DEUTDEFF');
 
-        expect(bic.getLocationCode(), 'FF');
+        expect(bic.locationCode, 'FF');
       });
 
       test('toString 1', () {
