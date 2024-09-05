@@ -27,3 +27,7 @@ Expose only required files
 Update to follow IBAN spec 95, in line with ibankit-js v1.6.3
 
 Lower required sdk version to 2.17.0
+
+## 2.0.2
+
+Fix bank code validation ISO-9362:2022, in line with ibankit-js v1.6.4

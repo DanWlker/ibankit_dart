@@ -28,6 +28,12 @@ void main() {
         expect(bic.getBankCode(), "DEUT");
       });
 
+      test("bank code alphanum", () {
+        final bic = BIC("E097AEXXXXX");
+
+        expect(bic.getBankCode(), "E097");
+      });
+
       test("country code", () {
         final bic = BIC("DEUTDEFF500");
 

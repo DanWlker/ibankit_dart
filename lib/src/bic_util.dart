@@ -71,10 +71,10 @@ void validateCase(String bic) {
 void validateBankCode(String bic) {
   String bankCode = getBankCode(bic);
 
-  if (!RegExp(ucRegex).hasMatch(bankCode)) {
+  if (!RegExp(ucnumRegex).hasMatch(bankCode)) {
     throw IbanFormatException(
       FormatViolation.BANK_CODE_ONLY_LETTERS,
-      "Bank code must contain only letters. Code:$bankCode",
+      "Bank code must contain only letters or digits. Code:$bankCode",
     );
   }
 }
