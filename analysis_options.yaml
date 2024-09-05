@@ -16,6 +16,7 @@ analyzer:
   errors:
     public_member_api_docs: ignore
     lines_longer_than_80_chars: ignore
+    flutter_style_todos: ignore
 # Uncomment the following section to specify additional rules.
 
 # linter:

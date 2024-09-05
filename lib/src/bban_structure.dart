@@ -424,7 +424,7 @@ class BbanStructure {
         length: 23,
         characterType: CharacterType.n,
       ),
-      // @TODO is this france?
+      // TODO: is this france?
     ]),
 
     // Provisional
@@ -433,7 +433,7 @@ class BbanStructure {
         length: 23,
         characterType: CharacterType.n,
       ),
-      // @TODO is this france?
+      // TODO: is this france?
     ]),
 
     CountryCode.CH: BbanStructure([
@@ -915,7 +915,7 @@ class BbanStructure {
       BbanStructurePart.nationalCheckDigit(
         length: 2,
         characterType: CharacterType.n,
-      ), // @TODO checkdigit
+      ), // TODO: checkdigit
     ]),
 
     // Provisional
@@ -942,7 +942,7 @@ class BbanStructure {
         length: 2,
         characterType: CharacterType.n,
       ),
-      // @TODO checkdigit
+      // TODO: checkdigit
     ]),
 
     // Provisional
@@ -1270,7 +1270,7 @@ class BbanStructure {
         length: 23,
         characterType: CharacterType.n,
       ),
-      // @TODO is this france?
+      // TODO: is this france?
     ]),
 
     CountryCode.TL: BbanStructure([
