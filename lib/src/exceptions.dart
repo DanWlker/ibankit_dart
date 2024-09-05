@@ -35,10 +35,6 @@ enum FormatViolation {
 }
 
 class IbanFormatException implements Exception {
-  final FormatViolation formatViolation;
-  final String message;
-  final String? actual;
-  final String? expected;
 
   const IbanFormatException(
     this.formatViolation,
@@ -46,32 +42,36 @@ class IbanFormatException implements Exception {
     this.actual,
     this.expected,
   ]);
+  final FormatViolation formatViolation;
+  final String message;
+  final String? actual;
+  final String? expected;
 }
 
 class UnsupportedCountryException implements Exception {
-  final String message;
-  final String? actual;
 
   const UnsupportedCountryException(
     this.message, [
     this.actual,
   ]);
+  final String message;
+  final String? actual;
 }
 
 class InvalidCheckDigitException implements Exception {
-  final String message;
-  final String? actual;
-  final String? expected;
 
   const InvalidCheckDigitException(
     this.message, [
     this.actual,
     this.expected,
   ]);
+  final String message;
+  final String? actual;
+  final String? expected;
 }
 
 class RequiredPartTypeMissing implements Exception {
-  final String message;
 
   const RequiredPartTypeMissing(this.message);
+  final String message;
 }

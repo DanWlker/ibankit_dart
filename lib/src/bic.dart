@@ -1,15 +1,15 @@
-import 'bic_util.dart' as bic_util;
-import 'country.dart';
+import 'package:ibankit_dart/src/bic_util.dart' as bic_util;
+import 'package:ibankit_dart/src/country.dart';
 
 /// Business Identifier Codes (also known as SWIFT-BIC, BIC code, SWIFT ID or SWIFT code).
 /// http://en.wikipedia.org/wiki/ISO_9362
 class BIC {
-  late String _value;
 
   BIC(String bic) {
     bic_util.validate(bic);
     _value = bic;
   }
+  late String _value;
 
   String getBankCode() {
     return bic_util.getBankCode(_value);
