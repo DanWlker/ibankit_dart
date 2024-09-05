@@ -109,6 +109,7 @@ class BbanStructurePart {
   })  : _entryType = PartType.IDENTIFICATION_NUMBER,
         _characterType = characterType,
         _length = length;
+
   final PartType _entryType;
   final CharacterType _characterType;
   final int _length;
