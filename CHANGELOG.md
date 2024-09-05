@@ -31,3 +31,7 @@ Lower required sdk version to 2.17.0
 ## 2.0.2
 
 Fix bank code validation ISO-9362:2022, in line with ibankit-js v1.6.4
+
+## 3.0.0-dev.1
+
+Refactor to use more dart features and follow very_good_analysis lints

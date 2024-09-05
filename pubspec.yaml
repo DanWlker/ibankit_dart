@@ -1,6 +1,6 @@
 name: ibankit_dart
 description: Translate to dart from https://github.com/koblas/ibankit-js
-version: 2.0.2
+version: 3.0.0-dev.1
 repository: https://github.com/DanWlker/ibankit_dart.git
 
 environment:
