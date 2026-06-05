@@ -39,3 +39,7 @@ Refactor to use more dart features and follow very_good_analysis lints
 ## 3.0.0-dev.2
 
 Refactor to use more dart features
+
+## 2.0.3
+
+Add oman iban validation, in line with ibankit-js v1.6.5
