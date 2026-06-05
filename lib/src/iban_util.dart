@@ -1,5 +1,3 @@
-// ignore_for_file: constant_identifier_names, non_constant_identifier_names
-
 import 'package:ibankit_dart/src/bban_structure.dart';
 import 'package:ibankit_dart/src/country.dart';
 import 'package:ibankit_dart/src/exceptions.dart';
@@ -8,18 +6,18 @@ import 'package:ibankit_dart/src/structure_part.dart';
 const String ucRegex = r'^[A-Z]+$';
 const String numRegex = r'^[0-9]+$';
 
-const String DEFAULT_CHECK_DIGIT = '00';
-const int MOD = 97;
-const int MAX = 999999999;
+const String defaultCheckDigit = '00';
+const int mod = 97;
+const int max = 999999999;
 
-const int COUNTRY_CODE_INDEX = 0;
-const int COUNTRY_CODE_LENGTH = 2;
-const int CHECK_DIGIT_INDEX = COUNTRY_CODE_LENGTH;
-const int CHECK_DIGIT_LENGTH = 2;
-const int BBAN_INDEX = CHECK_DIGIT_INDEX + CHECK_DIGIT_LENGTH;
+const int countryCodeIndex = 0;
+const int countryCodeLength = 2;
+const int checkDigitIndex = countryCodeLength;
+const int checkDigitLength = 2;
+const int bbanIndex = checkDigitIndex + checkDigitLength;
 
 String calculateCheckDigit(String iban) {
-  final reformattedIban = replaceCheckDigit(iban, DEFAULT_CHECK_DIGIT);
+  final reformattedIban = replaceCheckDigit(iban, defaultCheckDigit);
   final modResult = calculateMod(reformattedIban);
   final checkDigit = (98 - modResult).toString();
 
@@ -65,68 +63,68 @@ int getIbanLength(CountryCode country) {
     );
   }
 
-  return COUNTRY_CODE_LENGTH + CHECK_DIGIT_LENGTH + structure.bbanLength;
+  return countryCodeLength + checkDigitLength + structure.bbanLength;
 }
 
 String getCheckDigit(String iban) {
   return iban.substring(
-    CHECK_DIGIT_INDEX,
-    CHECK_DIGIT_INDEX + CHECK_DIGIT_LENGTH,
+    checkDigitIndex,
+    checkDigitIndex + checkDigitLength,
   );
 }
 
 String getCountryCode(String iban) {
   return iban.substring(
-    COUNTRY_CODE_INDEX,
-    COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH,
+    countryCodeIndex,
+    countryCodeIndex + countryCodeLength,
   );
 }
 
 String getCountryCodeAndCheckDigit(String iban) {
   return iban.substring(
-    COUNTRY_CODE_INDEX,
-    COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH + CHECK_DIGIT_LENGTH,
+    countryCodeIndex,
+    countryCodeIndex + countryCodeLength + checkDigitLength,
   );
 }
 
 String getBban(String iban) {
-  return iban.substring(BBAN_INDEX);
+  return iban.substring(bbanIndex);
 }
 
 String? getAccountNumber(String iban) {
-  return extractBbanEntry(iban, PartType.ACCOUNT_NUMBER);
+  return extractBbanEntry(iban, PartType.accountNumber);
 }
 
 String? getBankCode(String iban) {
-  return extractBbanEntry(iban, PartType.BANK_CODE);
+  return extractBbanEntry(iban, PartType.bankCode);
 }
 
 String? getBranchCode(String iban) {
-  return extractBbanEntry(iban, PartType.BRANCH_CODE);
+  return extractBbanEntry(iban, PartType.branchCode);
 }
 
 String? getNationalCheckDigit(String iban) {
-  return extractBbanEntry(iban, PartType.NATIONAL_CHECK_DIGIT);
+  return extractBbanEntry(iban, PartType.nationalCheckDigit);
 }
 
 String? getBranchCheckDigit(String iban) {
-  return extractBbanEntry(iban, PartType.BRANCH_CHECK_DIGIT);
+  return extractBbanEntry(iban, PartType.branchCheckDigit);
 }
 
 String? getCurrencyType(String iban) {
-  return extractBbanEntry(iban, PartType.CURRENCY_TYPE);
+  return extractBbanEntry(iban, PartType.currencyType);
 }
 
 String? getAccountType(String iban) {
-  return extractBbanEntry(iban, PartType.ACCOUNT_TYPE);
+  return extractBbanEntry(iban, PartType.accountType);
 }
 
 String? getOwnerAccountType(String iban) {
-  return extractBbanEntry(iban, PartType.OWNER_ACCOUNT_NUMBER);
+  return extractBbanEntry(iban, PartType.ownerAccountNumber);
 }
 
 String? getIdentificationNumber(String iban) {
-  return extractBbanEntry(iban, PartType.IDENTIFICATION_NUMBER);
+  return extractBbanEntry(iban, PartType.identificationNumber);
 }
 
 String replaceCheckDigit(String iban, String checkDigit) {
@@ -181,7 +179,7 @@ void validateCheckDigitChecksum(String iban) {
 void validateNotEmpty(String iban) {
   if (iban.isEmpty) {
     throw const IbanFormatException(
-      FormatViolation.NOT_EMPTY,
+      FormatViolation.notEmpty,
       "Empty string can't be a valid Iban.",
     );
   }
@@ -189,9 +187,9 @@ void validateNotEmpty(String iban) {
 
 void validateCountryCode(String iban, {bool hasStructure = true}) {
   // check if iban contains 2 char country code
-  if (iban.length < COUNTRY_CODE_LENGTH) {
+  if (iban.length < countryCodeLength) {
     throw const IbanFormatException(
-      FormatViolation.COUNTRY_CODE_TWO_LETTERS,
+      FormatViolation.countryCodeTwoLetters,
       'Iban must contain 2 char country code.',
     );
   }
@@ -202,7 +200,7 @@ void validateCountryCode(String iban, {bool hasStructure = true}) {
   if (countryCode != countryCode.toUpperCase() ||
       !RegExp(ucRegex).hasMatch(countryCode)) {
     throw const IbanFormatException(
-      FormatViolation.COUNTRY_CODE_ONLY_UPPER_CASE_LETTERS,
+      FormatViolation.countryCodeOnlyUpperCaseLetters,
       'Iban country code must contain upper case letters.',
     );
   }
@@ -210,7 +208,7 @@ void validateCountryCode(String iban, {bool hasStructure = true}) {
   final country = CountryCode.countryByCode(countryCode);
   if (country == null) {
     throw const IbanFormatException(
-      FormatViolation.COUNTRY_CODE_EXISTS,
+      FormatViolation.countryCodeExists,
       'Iban contains non existing country code.',
     );
   }
@@ -228,9 +226,9 @@ void validateCountryCode(String iban, {bool hasStructure = true}) {
 
 void validateCheckDigitPresence(String iban) {
   // check if iban contains 2 digit check digit
-  if (iban.length < COUNTRY_CODE_LENGTH + CHECK_DIGIT_LENGTH) {
+  if (iban.length < countryCodeLength + checkDigitLength) {
     throw const IbanFormatException(
-      FormatViolation.CHECK_DIGIT_TWO_DIGITS,
+      FormatViolation.checkDigitTwoDigits,
       'Iban must contain 2 digit check digit.',
     );
   }
@@ -239,7 +237,7 @@ void validateCheckDigitPresence(String iban) {
 
   if (!RegExp(numRegex).hasMatch(checkDigit)) {
     throw const IbanFormatException(
-      FormatViolation.CHECK_DIGIT_ONLY_DIGITS,
+      FormatViolation.checkDigitOnlyDigits,
       "Iban's check digit should contain only digits.",
     );
   }
@@ -249,15 +247,15 @@ void validateCheckDigitPresence(String iban) {
 int calculateMod(String iban) {
   final reformattedIban = getBban(iban) + getCountryCodeAndCheckDigit(iban);
 
-  final VA = 'A'.codeUnitAt(0);
-  final VZ = 'Z'.codeUnitAt(0);
-  final V0 = '0'.codeUnitAt(0);
-  final V9 = '9'.codeUnitAt(0);
+  final vA = 'A'.codeUnitAt(0);
+  final vZ = 'Z'.codeUnitAt(0);
+  final v0 = '0'.codeUnitAt(0);
+  final v9 = '9'.codeUnitAt(0);
 
   int addSum(int total, int value) {
     final newTotal = (value > 9 ? total * 100 : total * 10) + value;
 
-    return newTotal > MAX ? newTotal % MOD : newTotal;
+    return newTotal > max ? newTotal % mod : newTotal;
   }
 
   final reformattedIbanList = reformattedIban.toUpperCase().split('');
@@ -266,19 +264,19 @@ int calculateMod(String iban) {
 
   for (var i = 0; i < reformattedIbanList.length; ++i) {
     final code = reformattedIbanList[i].codeUnitAt(0);
-    if (VA <= code && code <= VZ) {
-      total = addSum(total, code - VA + 10);
-    } else if (V0 <= code && code <= V9) {
-      total = addSum(total, code - V0);
+    if (vA <= code && code <= vZ) {
+      total = addSum(total, code - vA + 10);
+    } else if (v0 <= code && code <= v9) {
+      total = addSum(total, code - v0);
     } else {
       throw IbanFormatException(
-        FormatViolation.IBAN_VALID_CHARACTERS,
+        FormatViolation.ibanValidCharacters,
         "Invalid Character[$code] = '$code'",
       );
     }
   }
 
-  return total % MOD;
+  return total % mod;
 }
 
 BbanStructure? getBbanStructure(String iban) {

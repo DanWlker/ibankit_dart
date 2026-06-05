@@ -1,18 +1,16 @@
-// ignore_for_file: constant_identifier_names
-
 import 'package:ibankit_dart/src/bban_structure.dart';
 import 'package:ibankit_dart/src/rand_int.dart';
 
 enum PartType {
-  BANK_CODE,
-  BRANCH_CODE,
-  ACCOUNT_NUMBER,
-  BRANCH_CHECK_DIGIT,
-  NATIONAL_CHECK_DIGIT,
-  CURRENCY_TYPE,
-  ACCOUNT_TYPE,
-  OWNER_ACCOUNT_NUMBER,
-  IDENTIFICATION_NUMBER,
+  bankCode,
+  branchCode,
+  accountNumber,
+  branchCheckDigit,
+  nationalCheckDigit,
+  currencyType,
+  accountType,
+  ownerAccountNumber,
+  identificationNumber,
 }
 
 enum CharacterType {
@@ -38,7 +36,7 @@ class BbanStructurePart {
     required int length,
     required CharacterType characterType,
     this.trailingSeparator = true,
-  })  : _entryType = PartType.BANK_CODE,
+  })  : _entryType = PartType.bankCode,
         _length = length,
         _characterType = characterType;
 
@@ -46,7 +44,7 @@ class BbanStructurePart {
     required int length,
     required CharacterType characterType,
     this.trailingSeparator = true,
-  })  : _entryType = PartType.BRANCH_CODE,
+  })  : _entryType = PartType.branchCode,
         _length = length,
         _characterType = characterType;
 
@@ -54,7 +52,7 @@ class BbanStructurePart {
     required int length,
     required CharacterType characterType,
     this.trailingSeparator = true,
-  })  : _entryType = PartType.ACCOUNT_NUMBER,
+  })  : _entryType = PartType.accountNumber,
         _length = length,
         _characterType = characterType;
 
@@ -63,7 +61,7 @@ class BbanStructurePart {
     required CharacterType characterType,
     String Function(String bban, BbanStructure structure)? generate,
     this.trailingSeparator = false,
-  })  : _entryType = PartType.NATIONAL_CHECK_DIGIT,
+  })  : _entryType = PartType.nationalCheckDigit,
         _characterType = characterType,
         _length = length,
         _generate = generate;
@@ -73,7 +71,7 @@ class BbanStructurePart {
     required CharacterType characterType,
     String Function(String bban, BbanStructure structure)? generate,
     this.trailingSeparator = false,
-  })  : _entryType = PartType.BRANCH_CHECK_DIGIT,
+  })  : _entryType = PartType.branchCheckDigit,
         _characterType = characterType,
         _length = length,
         _generate = generate;
@@ -82,7 +80,7 @@ class BbanStructurePart {
     required int length,
     required CharacterType characterType,
     this.trailingSeparator = false,
-  })  : _entryType = PartType.ACCOUNT_TYPE,
+  })  : _entryType = PartType.accountType,
         _characterType = characterType,
         _length = length;
 
@@ -90,7 +88,7 @@ class BbanStructurePart {
     required int length,
     required CharacterType characterType,
     this.trailingSeparator = false,
-  })  : _entryType = PartType.CURRENCY_TYPE,
+  })  : _entryType = PartType.currencyType,
         _characterType = characterType,
         _length = length;
 
@@ -98,7 +96,7 @@ class BbanStructurePart {
     required int length,
     required CharacterType characterType,
     this.trailingSeparator = true,
-  })  : _entryType = PartType.OWNER_ACCOUNT_NUMBER,
+  })  : _entryType = PartType.ownerAccountNumber,
         _characterType = characterType,
         _length = length;
 
@@ -106,7 +104,7 @@ class BbanStructurePart {
     required int length,
     required CharacterType characterType,
     this.trailingSeparator = true,
-  })  : _entryType = PartType.IDENTIFICATION_NUMBER,
+  })  : _entryType = PartType.identificationNumber,
         _characterType = characterType,
         _length = length;
 

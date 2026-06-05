@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:ibankit_dart/src/country.dart';
 import 'package:ibankit_dart/src/exceptions.dart';
 import 'package:ibankit_dart/src/structure_part.dart';
@@ -16,7 +14,7 @@ int mod11(String value, List<int> weights) {
 
 String nationalES(String bban, BbanStructure structure) {
   const weights = <int>[1, 2, 4, 8, 5, 10, 9, 7, 3, 6];
-  final combined = [PartType.BANK_CODE, PartType.BRANCH_CODE]
+  final combined = [PartType.bankCode, PartType.branchCode]
       .map((p) => structure.extractValueMust(bban, p))
       .join();
 
@@ -32,7 +30,7 @@ String nationalES(String bban, BbanStructure structure) {
   final d1 = to11(mod11('00$combined', weights));
   final d2 = to11(
     mod11(
-      structure.extractValueMust(bban, PartType.ACCOUNT_NUMBER),
+      structure.extractValueMust(bban, PartType.accountNumber),
       weights,
     ),
   );
@@ -54,9 +52,9 @@ String nationalFR(String bban, BbanStructure structure) {
   };
 
   var combined = '${[
-    PartType.BANK_CODE,
-    PartType.BRANCH_CODE,
-    PartType.ACCOUNT_NUMBER,
+    PartType.bankCode,
+    PartType.branchCode,
+    PartType.accountNumber,
   ].map((p) => structure.extractValue(bban, p)).join()}00';
 
   for (final element in replaceChars.entries) {
@@ -132,19 +130,19 @@ String nationalIT(String bban, BbanStructure structure) {
     24,
     23,
   ];
-  final V0 = '0'.codeUnitAt(0);
-  final V9 = '9'.codeUnitAt(0);
-  final VA = 'A'.codeUnitAt(0);
+  final v0 = '0'.codeUnitAt(0);
+  final v9 = '9'.codeUnitAt(0);
+  final vA = 'A'.codeUnitAt(0);
   final listValues = [
-    PartType.BANK_CODE,
-    PartType.BRANCH_CODE,
-    PartType.ACCOUNT_NUMBER,
+    PartType.bankCode,
+    PartType.branchCode,
+    PartType.accountNumber,
   ]
       .map((p) => structure.extractValueMust(bban, p))
       .join()
       .split('')
       .map((v) => v.toUpperCase().codeUnitAt(0))
-      .map((v) => v - (V0 <= v && v <= V9 ? V0 : VA))
+      .map((v) => v - (v0 <= v && v <= v9 ? v0 : vA))
       .toList();
 
   var value = 0;
@@ -155,11 +153,11 @@ String nationalIT(String bban, BbanStructure structure) {
 
   value %= 26;
 
-  return String.fromCharCode(VA + value);
+  return String.fromCharCode(vA + value);
 }
 
 String nationalNO(String bban, BbanStructure structure) {
-  final value = [PartType.BANK_CODE, PartType.ACCOUNT_NUMBER]
+  final value = [PartType.bankCode, PartType.accountNumber]
       .map((p) => structure.extractValueMust(bban, p))
       .join();
 
@@ -168,7 +166,7 @@ String nationalNO(String bban, BbanStructure structure) {
 
 // ISO 7064 MOD 10
 String nationalPT(String bban, BbanStructure structure) {
-  final V0 = '0'.codeUnitAt(0);
+  final v0 = '0'.codeUnitAt(0);
   const weights = <int>[
     73,
     17,
@@ -191,9 +189,9 @@ String nationalPT(String bban, BbanStructure structure) {
     3,
   ];
   final listRemainders = [
-    PartType.BANK_CODE,
-    PartType.BRANCH_CODE,
-    PartType.ACCOUNT_NUMBER,
+    PartType.bankCode,
+    PartType.branchCode,
+    PartType.accountNumber,
   ]
       .map((p) => structure.extractValueMust(bban, p))
       .join()
@@ -204,7 +202,7 @@ String nationalPT(String bban, BbanStructure structure) {
   var remainder = 0;
 
   for (var i = 0; i < listRemainders.length; ++i) {
-    remainder = (remainder + (listRemainders[i] - V0) * weights[i]) % 97;
+    remainder = (remainder + (listRemainders[i] - v0) * weights[i]) % 97;
   }
 
   return (98 - remainder).toString().padLeft(2, '0');
@@ -305,12 +303,12 @@ class BbanStructure {
         characterType: CharacterType.n,
         generate: (bban, structure) {
           final accountNumber =
-              structure.extractValue(bban, PartType.ACCOUNT_NUMBER);
-          final bankCode = structure.extractValue(bban, PartType.BANK_CODE);
+              structure.extractValue(bban, PartType.accountNumber);
+          final bankCode = structure.extractValue(bban, PartType.bankCode);
 
           if (accountNumber == null || bankCode == null) {
             throw const IbanFormatException(
-              FormatViolation.NOT_EMPTY,
+              FormatViolation.notEmpty,
               'account number or bank code missing',
             );
           }
@@ -1065,7 +1063,9 @@ class BbanStructure {
     CountryCode.OM: BbanStructure([
       BbanStructurePart.bankCode(length: 3, characterType: CharacterType.n),
       BbanStructurePart.accountNumber(
-          length: 16, characterType: CharacterType.n),
+        length: 16,
+        characterType: CharacterType.n,
+      ),
     ]),
 
     CountryCode.PK: BbanStructure([
@@ -1427,7 +1427,7 @@ class BbanStructure {
 
     if (expectedBbanLength != bbanLength) {
       throw IbanFormatException(
-        FormatViolation.BBAN_LENGTH,
+        FormatViolation.bbanLength,
         '[$bban] length is $bbanLength, expected BBAN length is: $expectedBbanLength',
       );
     }
@@ -1455,29 +1455,29 @@ class BbanStructure {
       switch (part.characterType) {
         case CharacterType.a:
           throw IbanFormatException(
-            FormatViolation.BBAN_ONLY_UPPER_CASE_LETTERS,
+            FormatViolation.bbanOnlyUpperCaseLetters,
             '[$entryValue] must contain only upper case letters.',
           );
         case CharacterType.c:
           throw IbanFormatException(
-            FormatViolation.BBAN_ONLY_DIGITS_OR_LETTERS,
+            FormatViolation.bbanOnlyDigitsOrLetters,
             '[$entryValue] must contain only digits or letters.',
           );
         case CharacterType.n:
           throw IbanFormatException(
-            FormatViolation.BBAN_ONLY_DIGITS,
+            FormatViolation.bbanOnlyDigits,
             '[$entryValue] must contain only digits.',
           );
         case CharacterType.e:
           break;
       }
     }
-    if (part.entryType == PartType.NATIONAL_CHECK_DIGIT && part.hasGenerator) {
+    if (part.entryType == PartType.nationalCheckDigit && part.hasGenerator) {
       final expected = part.generate(bban, this);
 
       if (entryValue != expected) {
         throw IbanFormatException(
-          FormatViolation.NATIONAL_CHECK_DIGIT,
+          FormatViolation.nationalCheckDigit,
           "national check digit(s) don't match expect=[$expected] actual=[$entryValue]",
         );
       }

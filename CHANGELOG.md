@@ -43,3 +43,7 @@ Refactor to use more dart features
 ## 2.0.3
 
 Add oman iban validation, in line with ibankit-js v1.6.5
+
+## 3.0.0-dev.3
+
+Refactor to use more dart features

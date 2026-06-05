@@ -72,47 +72,47 @@ class IBANBuilder {
 
     for (final part in structure.entries) {
       switch (part.entryType) {
-        case PartType.BANK_CODE:
+        case PartType.bankCode:
           if (bankCodeValue != null) {
             parts.add(bankCodeValue!);
           }
           break;
-        case PartType.BRANCH_CODE:
+        case PartType.branchCode:
           if (branchCodeValue != null) {
             parts.add(branchCodeValue!);
           }
           break;
-        case PartType.BRANCH_CHECK_DIGIT:
+        case PartType.branchCheckDigit:
           if (branchCheckDigitValue != null) {
             parts.add(branchCheckDigitValue!);
           }
           break;
-        case PartType.ACCOUNT_NUMBER:
+        case PartType.accountNumber:
           if (accountNumberValue != null) {
             parts.add(accountNumberValue!);
           }
           break;
-        case PartType.NATIONAL_CHECK_DIGIT:
+        case PartType.nationalCheckDigit:
           if (nationalCheckDigitValue != null) {
             parts.add(nationalCheckDigitValue!);
           }
           break;
-        case PartType.ACCOUNT_TYPE:
+        case PartType.accountType:
           if (accountTypeValue != null) {
             parts.add(accountTypeValue!);
           }
           break;
-        case PartType.OWNER_ACCOUNT_NUMBER:
+        case PartType.ownerAccountNumber:
           if (ownerAccountTypeValue != null) {
             parts.add(ownerAccountTypeValue!);
           }
           break;
-        case PartType.IDENTIFICATION_NUMBER:
+        case PartType.identificationNumber:
           if (identificationNumberValue != null) {
             parts.add(identificationNumberValue!);
           }
           break;
-        case PartType.CURRENCY_TYPE:
+        case PartType.currencyType:
           break;
       }
     }
@@ -121,7 +121,7 @@ class IBANBuilder {
   }
 
   String _formatIban() {
-    return '${countryValue?.countryCode}${iban_util.DEFAULT_CHECK_DIGIT}${_formatBban()}';
+    return '${countryValue?.countryCode}${iban_util.defaultCheckDigit}${_formatBban()}';
   }
 
   void _fillMissingFieldsRandomly(bool fillRandom) {
@@ -138,90 +138,90 @@ class IBANBuilder {
 
     for (final entry in structure.entries) {
       switch (entry.entryType) {
-        case PartType.BANK_CODE:
+        case PartType.bankCode:
           if (bankCodeValue == null) {
             bankCodeValue = entry.generate('', structure);
           } else if (!fillRandom) {
             throw const IbanFormatException(
-              FormatViolation.NOT_NULL,
+              FormatViolation.notNull,
               'bankCode is required; it cannot be null',
             );
           }
           break;
-        case PartType.BRANCH_CODE:
+        case PartType.branchCode:
           if (branchCodeValue == null) {
             branchCodeValue = entry.generate('', structure);
           } else if (!fillRandom) {
             throw const IbanFormatException(
-              FormatViolation.NOT_NULL,
+              FormatViolation.notNull,
               'branchCode is required; it cannot be null',
             );
           }
           break;
-        case PartType.BRANCH_CHECK_DIGIT:
+        case PartType.branchCheckDigit:
           if (branchCheckDigitValue == null) {
             branchCheckDigitValue = entry.generate('', structure);
           } else if (!fillRandom) {
             throw const IbanFormatException(
-              FormatViolation.NOT_NULL,
+              FormatViolation.notNull,
               'branchCheckDigit is required; it cannot be null',
             );
           }
           break;
-        case PartType.ACCOUNT_NUMBER:
+        case PartType.accountNumber:
           if (accountNumberValue == null) {
             accountNumberValue = entry.generate('', structure);
           } else if (!fillRandom) {
             throw const IbanFormatException(
-              FormatViolation.NOT_NULL,
+              FormatViolation.notNull,
               'accountNumber is required; it cannot be null',
             );
           }
           break;
-        case PartType.NATIONAL_CHECK_DIGIT:
+        case PartType.nationalCheckDigit:
           if (nationalCheckDigitValue == null) {
             needCheckDigit = true;
             nationalCheckDigitValue = ''.padLeft(entry.length, '0');
           }
           break;
-        case PartType.ACCOUNT_TYPE:
+        case PartType.accountType:
           if (accountTypeValue == null) {
             accountTypeValue = entry.generate('', structure);
           } else if (!fillRandom) {
             throw const IbanFormatException(
-              FormatViolation.NOT_NULL,
+              FormatViolation.notNull,
               'accountType is required; it cannot be null',
             );
           }
           break;
-        case PartType.OWNER_ACCOUNT_NUMBER:
+        case PartType.ownerAccountNumber:
           if (ownerAccountTypeValue == null) {
             ownerAccountTypeValue = entry.generate('', structure);
           } else if (!fillRandom) {
             throw const IbanFormatException(
-              FormatViolation.NOT_NULL,
+              FormatViolation.notNull,
               'ownerAccountType is required; it cannot be null',
             );
           }
           break;
-        case PartType.IDENTIFICATION_NUMBER:
+        case PartType.identificationNumber:
           if (identificationNumberValue == null) {
             identificationNumberValue = entry.generate('', structure);
           } else if (!fillRandom) {
             throw const IbanFormatException(
-              FormatViolation.NOT_NULL,
+              FormatViolation.notNull,
               'indentificationNumber is required; it cannot be null',
             );
           }
           break;
-        case PartType.CURRENCY_TYPE:
+        case PartType.currencyType:
           break;
       }
     }
 
     if (needCheckDigit) {
       for (final entry in structure.entries) {
-        if (entry.entryType == PartType.NATIONAL_CHECK_DIGIT) {
+        if (entry.entryType == PartType.nationalCheckDigit) {
           final bban = _formatBban();
 
           nationalCheckDigitValue = entry.generate(bban, structure);

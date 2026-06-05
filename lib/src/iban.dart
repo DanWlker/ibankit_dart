@@ -1,10 +1,8 @@
-// ignore_for_file: constant_identifier_names
-
 import 'package:ibankit_dart/src/country.dart';
 import 'package:ibankit_dart/src/iban_builder.dart';
 import 'package:ibankit_dart/src/iban_util.dart' as iban_util;
 
-const String NON_ALPHANUM = '[^a-z0-9]';
+const String nonAlphanum = '[^a-z0-9]';
 
 const Map<String, String> samples = {
   'AD': 'AD1200012030200359100100',
@@ -194,7 +192,7 @@ class IBAN {
 
   static String electronicFormat(String iban) {
     return iban
-        .replaceAll(RegExp(NON_ALPHANUM, caseSensitive: false), '')
+        .replaceAll(RegExp(nonAlphanum, caseSensitive: false), '')
         .toUpperCase();
   }
 
