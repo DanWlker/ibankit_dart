@@ -519,6 +519,13 @@ void main() {
         expect(iban.getNationalCheckDigit(), "7");
       });
 
+      test("OM", () {
+        final iban = IBAN("OM770180010080577149017");
+        expect(iban.getCountry()?.countryCode, "OM");
+        expect(iban.getBankCode(), "018");
+        expect(iban.getAccountNumber(), "0010080577149017");
+      });
+
       test("PK", () {
         final iban = IBAN("PK36SCBL0000001123456702");
         expect(iban.getCountry()?.countryCode, "PK");
