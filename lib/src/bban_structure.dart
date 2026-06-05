@@ -208,7 +208,7 @@ String nationalPT(String bban, BbanStructure structure) {
 }
 
 class BbanStructure {
-  BbanStructure(List<BbanStructurePart> entries) : _entries = entries;
+  BbanStructure(this._entries);
 
   static final BbanStructure _bbanFR = BbanStructure([
     BbanStructurePart.bankCode(length: 5, characterType: CharacterType.n),
