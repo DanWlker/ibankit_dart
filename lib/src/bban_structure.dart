@@ -38,19 +38,18 @@ String nationalES(String bban, BbanStructure structure) {
   return '$d1$d2';
 }
 
+final replaceChars = <RegExp, String>{
+  RegExp('[AJ]'): '1',
+  RegExp('[BKS]'): '2',
+  RegExp('[CLT]'): '3',
+  RegExp('[DMU]'): '4',
+  RegExp('[ENV]'): '5',
+  RegExp('[FOW]'): '6',
+  RegExp('[GPX]'): '7',
+  RegExp('[HQY]'): '8',
+  RegExp('[IRZ]'): '9',
+};
 String nationalFR(String bban, BbanStructure structure) {
-  final replaceChars = <String, String>{
-    '[AJ]': '1',
-    '[BKS]': '2',
-    '[CLT]': '3',
-    '[DMU]': '4',
-    '[ENV]': '5',
-    '[FOW]': '6',
-    '[GPX]': '7',
-    '[HQY]': '8',
-    '[IRZ]': '9',
-  };
-
   var combined = '${[
     PartType.bankCode,
     PartType.branchCode,
@@ -58,7 +57,7 @@ String nationalFR(String bban, BbanStructure structure) {
   ].map((p) => structure.extractValue(bban, p)).join()}00';
 
   for (final element in replaceChars.entries) {
-    combined = combined.replaceAll(RegExp(element.key), element.value);
+    combined = combined.replaceAll(element.key, element.value);
   }
 
   // Number is bigger than max integer, take the mod%97 by hand

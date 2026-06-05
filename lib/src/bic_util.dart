@@ -13,8 +13,8 @@ const int locationCodeLength = 2;
 const int branchCodeIndex = locationCodeIndex + locationCodeLength;
 const int branchCodeLength = 3;
 
-const String ucRegex = r'^[A-Z]+$';
-const String ucnumRegex = r'^[A-Z0-9]+$';
+final ucRegex = RegExp(r'^[A-Z]+$');
+final ucnumRegex = RegExp(r'^[A-Z0-9]+$');
 
 String getBankCode(String bic) {
   return bic.substring(bankCodeIndex, bankCodeIndex + bankCodeLength);
@@ -75,7 +75,7 @@ void validateCase(String bic) {
 void validateBankCode(String bic) {
   final bankCode = getBankCode(bic);
 
-  if (!RegExp(ucnumRegex).hasMatch(bankCode)) {
+  if (!ucnumRegex.hasMatch(bankCode)) {
     throw IbanFormatException(
       FormatViolation.bankCodeOnlyLetters,
       'Bank code must contain only letters or digits. Code:$bankCode',
@@ -88,7 +88,7 @@ void validateCountryCode(String bic) {
 
   if (countryCode.length < countryCodeLength ||
       countryCode != countryCode.toUpperCase() ||
-      !RegExp(ucRegex).hasMatch(countryCode)) {
+      !ucRegex.hasMatch(countryCode)) {
     throw IbanFormatException(
       FormatViolation.countryCodeOnlyUpperCaseLetters,
       'Bic country code must contain upper case letters. Code:$countryCode',
@@ -105,7 +105,7 @@ void validateCountryCode(String bic) {
 void validateLocationCode(String bic) {
   final locationCode = getLocationCode(bic);
 
-  if (!RegExp(ucnumRegex).hasMatch(locationCode)) {
+  if (!ucnumRegex.hasMatch(locationCode)) {
     throw IbanFormatException(
       FormatViolation.locationCodeOnlyLettersOrDigits,
       'Location code must contain only letters or digits. Code:$locationCode',
@@ -116,7 +116,7 @@ void validateLocationCode(String bic) {
 void validateBranchCode(String bic) {
   final branchCode = getBranchCode(bic);
 
-  if (!RegExp(ucnumRegex).hasMatch(branchCode)) {
+  if (!ucnumRegex.hasMatch(branchCode)) {
     throw IbanFormatException(
       FormatViolation.branchCodeOnlyLettersOrDigits,
       'Branch code must contain only letters or digits. Code:$branchCode',

@@ -3,8 +3,8 @@ import 'package:ibankit_dart/src/country.dart';
 import 'package:ibankit_dart/src/exceptions.dart';
 import 'package:ibankit_dart/src/structure_part.dart';
 
-const String ucRegex = r'^[A-Z]+$';
-const String numRegex = r'^[0-9]+$';
+final ucRegex = RegExp(r'^[A-Z]+$');
+final numRegex = RegExp(r'^[0-9]+$');
 
 const String defaultCheckDigit = '00';
 const int mod = 97;
@@ -131,10 +131,11 @@ String replaceCheckDigit(String iban, String checkDigit) {
   return getCountryCode(iban) + checkDigit + getBban(iban);
 }
 
+final ibanReplacerRegex = RegExp('(.{4})');
 String toFormattedString(String iban, [String separator = ' ']) {
   return iban
       .replaceAllMapped(
-        RegExp('(.{4})'),
+        ibanReplacerRegex,
         (match) => '${match.group(1)}$separator',
       )
       .trim();
@@ -198,7 +199,7 @@ void validateCountryCode(String iban, {bool hasStructure = true}) {
 
   // check case sensitivity
   if (countryCode != countryCode.toUpperCase() ||
-      !RegExp(ucRegex).hasMatch(countryCode)) {
+      !ucRegex.hasMatch(countryCode)) {
     throw const IbanFormatException(
       FormatViolation.countryCodeOnlyUpperCaseLetters,
       'Iban country code must contain upper case letters.',
@@ -235,7 +236,7 @@ void validateCheckDigitPresence(String iban) {
 
   final checkDigit = getCheckDigit(iban);
 
-  if (!RegExp(numRegex).hasMatch(checkDigit)) {
+  if (!numRegex.hasMatch(checkDigit)) {
     throw const IbanFormatException(
       FormatViolation.checkDigitOnlyDigits,
       "Iban's check digit should contain only digits.",

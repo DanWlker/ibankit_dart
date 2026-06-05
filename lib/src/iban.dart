@@ -2,7 +2,7 @@ import 'package:ibankit_dart/src/country.dart';
 import 'package:ibankit_dart/src/iban_builder.dart';
 import 'package:ibankit_dart/src/iban_util.dart' as iban_util;
 
-const String nonAlphanum = '[^a-z0-9]';
+final nonAlphanum = RegExp('[^a-z0-9]', caseSensitive: false);
 
 const Map<String, String> samples = {
   'AD': 'AD1200012030200359100100',
@@ -191,9 +191,7 @@ class IBAN {
   }
 
   static String electronicFormat(String iban) {
-    return iban
-        .replaceAll(RegExp(nonAlphanum, caseSensitive: false), '')
-        .toUpperCase();
+    return iban.replaceAll(nonAlphanum, '').toUpperCase();
   }
 
   static IBAN random([CountryCode? cc]) {
